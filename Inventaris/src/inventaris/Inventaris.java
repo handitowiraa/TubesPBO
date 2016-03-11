@@ -16,8 +16,7 @@ public class Inventaris {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("handitowira was here");
-        System.out.println("noted");
+        System.out.println("tes uji coba");
     }
     
 }
