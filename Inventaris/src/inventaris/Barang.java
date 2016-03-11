@@ -9,48 +9,58 @@ package inventaris;
  *
  * @author Emp. Elesar II
  */
-public class Barang{
-	private int idBarang;
-	private String namaBarang;
-	private int jumlah;
-	private String kondisi;
-	protected boolean masuk = false;
-	
-	public Barang(int id, String nama, int jumlah){
-		idBarang = id;
-		namaBarang = nama;
-		this.jumlah = jumlah;
-	}
-	public void setKondisi(String k){
-		kondisi = k;
-	}
-	public int getID(){
-		return idBarang;
-	}
-	public String getNama(){
-		return namaBarang;
-	}
-	public int getJumlah(){
-		return jumlah;
-	}
-	public String getKondisi(){
-		return kondisi;
-	}
-	public void view1(){
-		System.out.println("ID\t\t: "+idBarang);
-		System.out.println("Nama\t\t: "+namaBarang);
-		System.out.println("Jumlah\t\t: "+jumlah);
-	}
-	public void view2(){
-		System.out.println("ID\t\t: "+idBarang);
-		System.out.println("Nama\t\t: "+namaBarang);
-		System.out.println("Jumlah\t\t: "+jumlah);
-		System.out.println("Kondisi\t\t: "+kondisi);
-	}
-	public void updateJumlah(int jumlah){
-		this.jumlah = jumlah;
-	}
-	public void updateKondisi(String kondisi){
-		this.kondisi = kondisi;
-	}
+public class Barang {
+
+    private int idBarang;
+    private String namaBarang;
+    private int jumlah;
+    private String kondisi;
+    protected boolean masuk = false;
+
+    public Barang(int id, String nama, int jumlah) {
+        idBarang = id;
+        namaBarang = nama;
+        this.jumlah = jumlah;
+    }
+
+    public void setKondisi(String k) {
+        kondisi = k;
+    }
+
+    public int getID() {
+        return idBarang;
+    }
+
+    public String getNama() {
+        return namaBarang;
+    }
+
+    public int getJumlah() {
+        return jumlah;
+    }
+
+    public String getKondisi() {
+        return kondisi;
+    }
+
+    public void view1() {
+        System.out.println("ID\t\t: " + idBarang);
+        System.out.println("Nama\t\t: " + namaBarang);
+        System.out.println("Jumlah\t\t: " + jumlah);
+    }
+
+    public void view2() {
+        System.out.println("ID\t\t: " + idBarang);
+        System.out.println("Nama\t\t: " + namaBarang);
+        System.out.println("Jumlah\t\t: " + jumlah);
+        System.out.println("Kondisi\t\t: " + kondisi);
+    }
+
+    public void updateJumlah(int jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public void updateKondisi(String kondisi) {
+        this.kondisi = kondisi;
+    }
 }
