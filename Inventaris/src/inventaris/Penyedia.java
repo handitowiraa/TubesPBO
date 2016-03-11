@@ -14,7 +14,8 @@ public class Penyedia extends Orang{
 	private long id_penyedia;
 	protected int jumBarang = 0;
 	
-	public Penyedia(){
+	public Penyedia(String nama, String username, String password){
+		super(nama,username,password);
 		daftarBarang = new Barang[100];
 	}
 	public void setID(long id){
@@ -57,7 +58,6 @@ public class Penyedia extends Orang{
 		}
 		jumBarang--;
 	}
-        @Override
 	public String toString(){
 		return "ID\t: "+id_penyedia+"\nNama\t: "+super.getNama();
 	}

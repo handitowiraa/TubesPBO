@@ -14,6 +14,11 @@ public abstract class Orang{
 	private String username;
 	private String password;
 	
+	public Orang(String nama,String username,String password){
+		this.nama = nama;
+		this.username = username;
+		this.password = password;
+	}
 	public void setNama(String nama){
 		this.nama = nama;
 	}
