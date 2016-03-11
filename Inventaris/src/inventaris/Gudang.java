@@ -10,14 +10,14 @@ package inventaris;
  * @author Handito
  */
 public class Gudang {
-
+    
     private Barang[] daftarBarang;
     private int jumBarang = 0;
-
+    
     public Gudang() {
         this.daftarBarang = new Barang[100];
     }
-
+    
     public void addBarang(Barang b, String kondisi) {
         if (jumBarang < daftarBarang.length) {
             daftarBarang[jumBarang] = b;
@@ -25,7 +25,7 @@ public class Gudang {
             jumBarang++;
         }
     }
-
+    
     public int findBarang(int id) {
         if (daftarBarang[id].getID() == id) {
             return id;
@@ -33,13 +33,13 @@ public class Gudang {
             return 0;
         }
     }
-
+    
     public void view() {
         for (int i = 0; i < daftarBarang.length; i++) {
             daftarBarang[i].view2();
         }
     }
-
+    
     public Barang getBarang(int id) {
         if (daftarBarang[id].getID() == id) {
             return daftarBarang[id];
@@ -47,9 +47,10 @@ public class Gudang {
             return daftarBarang[0];
         }
     }
-
+    
     public void deleteBarang(int id) {
         if (daftarBarang[id].getID() == id) {
+            getBarang(id).updateJumlah(0);
             System.out.println("\nData barang dengan id: " + daftarBarang[id].getID() + " berhasil dihapus");
         }
     }
