@@ -21,8 +21,11 @@ public class Inventaris {
         p2.createBarang(0, "Meja", 10);
         p2.createBarang(1, "Kursi", 20);
         p2.createBarang(2, "Proyektor", 30);
-
-        //inisialisasi gudang baru
+        p2.view();
+        
+        p2.ubahBarang(2,15);
+        p2.view();
+//inisialisasi gudang baru
         Gudang g1 = new Gudang();
 
         //inisialisasi petugas baru
@@ -33,8 +36,8 @@ public class Inventaris {
         p1.tambahBarang(g1, p2.getBarang(1), "baik");
         p1.tambahBarang(g1, p2.getBarang(2), "baik");
 
+        p2.ubahBarang(2,15);
         //cek isi gudang
         g1.view();
     }
-
 }

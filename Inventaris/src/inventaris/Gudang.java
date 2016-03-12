@@ -21,6 +21,7 @@ public class Gudang {
     public void addBarang(Barang b, String kondisi) {
         if (jumBarang < daftarBarang.length) {
             daftarBarang[jumBarang] = b;
+            b.setMasuk(true);
             daftarBarang[jumBarang].setKondisi(kondisi);
             jumBarang++;
         }
@@ -51,6 +52,7 @@ public class Gudang {
 
     public void deleteBarang(int id) {
         int idx = findBarang(id);
+        daftarBarang[idx].setMasuk(false);
         if (idx != -1) {
             for (int i = idx; i < jumBarang - 1; i++) {
                 jumBarang = jumBarang - 1;

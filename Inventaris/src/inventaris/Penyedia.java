@@ -73,6 +73,13 @@ public class Penyedia extends Orang {
         jumBarang--;
     }
 
+    public void ubahBarang(int id, int jum) {
+        int i = findBarang(id);
+        if (!(daftarBarang[i].getMasuk())){
+            daftarBarang[i].updateJumlah(jum);
+        } else System.out.println("Data Tidak dapat diubah");
+    }
+    
     public String toString() {
         return "ID\t: " + id_penyedia + "\nNama\t: " + super.getNama();
     }

@@ -63,4 +63,12 @@ public class Barang {
     public void updateKondisi(String kondisi) {
         this.kondisi = kondisi;
     }
+    
+    public void setMasuk(boolean m){
+        masuk = m;
+    }
+    
+    public boolean getMasuk(){
+        return masuk;
+    } 
 }
