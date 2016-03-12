@@ -10,14 +10,14 @@ package inventaris;
  * @author Handito
  */
 public class Gudang {
-    
+
     private Barang[] daftarBarang;
     private int jumBarang = 0;
-    
+
     public Gudang() {
         this.daftarBarang = new Barang[100];
     }
-    
+
     public void addBarang(Barang b, String kondisi) {
         if (jumBarang < daftarBarang.length) {
             daftarBarang[jumBarang] = b;
@@ -25,21 +25,22 @@ public class Gudang {
             jumBarang++;
         }
     }
-    
+
     public int findBarang(int id) {
-        if (daftarBarang[id].getID() == id) {
-            return id;
-        } else {
-            return 0;
+        for (int i = 0; i < jumBarang; i++) {
+            if (daftarBarang[id].getID() == id) {
+                return id;
+            }
         }
+        return -1;
     }
-    
+
     public void view() {
-        for (int i = 0; i < daftarBarang.length; i++) {
+        for (int i = 0; i < jumBarang; i++) {
             daftarBarang[i].view2();
         }
     }
-    
+
     public Barang getBarang(int id) {
         if (daftarBarang[id].getID() == id) {
             return daftarBarang[id];
@@ -47,11 +48,17 @@ public class Gudang {
             return daftarBarang[0];
         }
     }
-    
+
     public void deleteBarang(int id) {
-        if (daftarBarang[id].getID() == id) {
-            getBarang(id).updateJumlah(0);
-            System.out.println("\nData barang dengan id: " + daftarBarang[id].getID() + " berhasil dihapus");
+        int idx = findBarang(id);
+        if (idx != -1) {
+            for (int i = idx; i < jumBarang - 1; i++) {
+                jumBarang = jumBarang - 1;
+                daftarBarang[i] = daftarBarang[i + 1];
+            }
+            System.out.println("\nData barang berhasil dihapus");
+        } else {
+            System.out.println("\nData barang tidak ada");
         }
     }
 }
