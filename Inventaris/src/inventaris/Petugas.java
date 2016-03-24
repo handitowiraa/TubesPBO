@@ -13,8 +13,9 @@ public class Petugas extends Orang {
 
     private long idPetugas;
 
-    public Petugas(String nama, String username, String password) {
+    public Petugas(long id, String nama, String username, String password) {
         super(nama, username, password);
+        idPetugas = id;
     }
 
     /**

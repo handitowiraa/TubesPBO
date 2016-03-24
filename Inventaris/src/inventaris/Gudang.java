@@ -13,15 +13,24 @@ public class Gudang {
 
     private Barang[] daftarBarang;
     private int jumBarang = 0;
-
-    public Gudang() {
-        this.daftarBarang = new Barang[100];
+    private int id_gudang;
+    
+    public Gudang(int id){
+	id_gudang = id;
+	this.daftarBarang = new Barang[100];
     }
 
+    public void setID(int id){
+	id_gudang = id;
+    }
+	
+    public int getID(){
+	return id_gudang;
+    }
+    
     public void addBarang(Barang b, String kondisi) {
         if (jumBarang < daftarBarang.length) {
             daftarBarang[jumBarang] = b;
-            b.setMasuk(true);
             daftarBarang[jumBarang].setKondisi(kondisi);
             jumBarang++;
         }
@@ -29,8 +38,8 @@ public class Gudang {
 
     public int findBarang(int id) {
         for (int i = 0; i < jumBarang; i++) {
-            if (daftarBarang[id].getID() == id) {
-                return id;
+            if (daftarBarang[i].getID() == id) {
+                return i;
             }
         }
         return -1;
@@ -52,7 +61,6 @@ public class Gudang {
 
     public void deleteBarang(int id) {
         int idx = findBarang(id);
-        daftarBarang[idx].setMasuk(false);
         if (idx != -1) {
             for (int i = idx; i < jumBarang - 1; i++) {
                 jumBarang = jumBarang - 1;

@@ -15,9 +15,10 @@ public class Penyedia extends Orang {
     private long id_penyedia;
     protected int jumBarang = 0;
 
-    public Penyedia(String nama, String username, String password) {
+    public Penyedia(long id, String nama, String username, String password) {
         super(nama, username, password);
         daftarBarang = new Barang[100];
+        id_penyedia = id;
     }
 
     public void setID(long id) {
@@ -44,19 +45,12 @@ public class Penyedia extends Orang {
     }
 
     public int findBarang(int id) {
-        boolean x = false;
-        int j = 0;
         for (int i = 0; i < jumBarang; i++) {
             if (daftarBarang[i].getID() == id) {
-                x = true;
-                j = i;
+                return i;
             }
         }
-        if (x) {
-            return j;
-        } else {
-            return -1;
-        }
+        return -1;
     }
 
     public void view() {
@@ -75,9 +69,9 @@ public class Penyedia extends Orang {
 
     public void ubahBarang(int id, int jum) {
         int i = findBarang(id);
-        if (!(daftarBarang[i].getMasuk())){
+        if (i != -1){
             daftarBarang[i].updateJumlah(jum);
-        } else System.out.println("Data Tidak dapat diubah");
+        }
     }
     
     public String toString() {

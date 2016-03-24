@@ -15,7 +15,6 @@ public class Barang {
     private String namaBarang;
     private int jumlah;
     private String kondisi;
-    protected boolean masuk = false;
 
     public Barang(int id, String nama, int jumlah) {
         idBarang = id;
@@ -23,6 +22,10 @@ public class Barang {
         this.jumlah = jumlah;
     }
 
+    public void setID(int id){
+        idBarang = id;
+    }
+    
     public void setKondisi(String k) {
         kondisi = k;
     }
@@ -63,12 +66,4 @@ public class Barang {
     public void updateKondisi(String kondisi) {
         this.kondisi = kondisi;
     }
-    
-    public void setMasuk(boolean m){
-        masuk = m;
-    }
-    
-    public boolean getMasuk(){
-        return masuk;
-    } 
 }
