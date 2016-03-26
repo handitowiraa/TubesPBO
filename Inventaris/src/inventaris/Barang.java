@@ -22,10 +22,10 @@ public class Barang {
         this.jumlah = jumlah;
     }
 
-    public void setID(int id){
+    public void setID(int id) {
         idBarang = id;
     }
-    
+
     public void setKondisi(String k) {
         kondisi = k;
     }

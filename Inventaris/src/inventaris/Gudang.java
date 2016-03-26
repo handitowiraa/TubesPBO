@@ -14,20 +14,20 @@ public class Gudang {
     private Barang[] daftarBarang;
     private int jumBarang = 0;
     private int id_gudang;
-    
-    public Gudang(int id){
-	id_gudang = id;
-	this.daftarBarang = new Barang[100];
+
+    public Gudang(int id) {
+        id_gudang = id;
+        this.daftarBarang = new Barang[100];
     }
 
-    public void setID(int id){
-	id_gudang = id;
+    public void setID(int id) {
+        id_gudang = id;
     }
-	
-    public int getID(){
-	return id_gudang;
+
+    public int getID() {
+        return id_gudang;
     }
-    
+
     public void addBarang(Barang b, String kondisi) {
         if (jumBarang < daftarBarang.length) {
             daftarBarang[jumBarang] = b;
