@@ -66,9 +66,4 @@ public class Barang {
     public void updateKondisi(String kondisi) {
         this.kondisi = kondisi;
     }
-
-    @Override
-    public String toString() {
-        return "Id Barang : " + idBarang + "Nama Barang : " + namaBarang + "Jumlah : " + jumlah + "Kondisi : " + kondisi;
-    }
 }
