@@ -69,11 +69,11 @@ public class Penyedia extends Orang {
 
     public void ubahBarang(int id, int jum) {
         int i = findBarang(id);
-        if (i != -1){
+        if (i != -1) {
             daftarBarang[i].updateJumlah(jum);
         }
     }
-    
+
     public String toString() {
         return "ID\t: " + id_penyedia + "\nNama\t: " + super.getNama();
     }
