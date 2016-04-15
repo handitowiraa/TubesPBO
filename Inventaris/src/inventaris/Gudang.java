@@ -37,6 +37,7 @@ public class Gudang {
         daftarBarang.add(b);
         jumBarang = daftarBarang.size();
     }
+
     /*
     public void saveBarang(Barang b, int id2){
         Database db = new Database();
@@ -69,7 +70,7 @@ public class Gudang {
             System.out.println(ex);
         }
     }
-    */
+     */
     public int findBarang(int id) {
         for (int i = 0; i < jumBarang; i++) {
             if (daftarBarang.get(i).getID() == id) {
@@ -86,10 +87,11 @@ public class Gudang {
     }
 
     public Barang getBarang(int id) {
-        if (findBarang(id)!= -1)
+        if (findBarang(id) != -1) {
             return daftarBarang.get(findBarang(id));
-        else
+        } else {
             return null;
+        }
     }
 
     public void deleteBarang(int id) {
