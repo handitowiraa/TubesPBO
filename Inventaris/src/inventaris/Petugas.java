@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template file, ch oose Tools | Templates
  * and open the template in the editor.
  */
 package inventaris;
@@ -32,7 +32,8 @@ public class Petugas extends Orang {
         this.idPetugas = idPetugas;
     }
 
-    public void tambahBarang(Gudang g, Barang b, String kondisi) {
+    public void tambahBarang(Gudang g, Barang b, String kondisi,int id2) {
+        b.setID(id2);
         g.addBarang(b, kondisi);
     }
 

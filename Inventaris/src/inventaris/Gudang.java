@@ -5,19 +5,23 @@
  */
 package inventaris;
 
+import database.Database;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author Handito
  */
 public class Gudang {
 
-    private Barang[] daftarBarang;
+    private ArrayList<Barang> daftarBarang;
     private int jumBarang = 0;
     private int id_gudang;
 
     public Gudang(int id) {
         id_gudang = id;
-        this.daftarBarang = new Barang[100];
+        this.daftarBarang = new ArrayList<>();
     }
 
     public void setID(int id) {
@@ -29,16 +33,46 @@ public class Gudang {
     }
 
     public void addBarang(Barang b, String kondisi) {
-        if (jumBarang < daftarBarang.length) {
-            daftarBarang[jumBarang] = b;
-            daftarBarang[jumBarang].setKondisi(kondisi);
-            jumBarang++;
+        b.setKondisi(kondisi);
+        daftarBarang.add(b);
+        jumBarang = daftarBarang.size();
+    }
+    /*
+    public void saveBarang(Barang b, int id2){
+        Database db = new Database();
+        String s = "insert into barang_gudang values("+getID()+","+id2
+                +",'"+b.getNama()+"',"+b.getJumlah()+",'"+b.getKondisi()+"')";
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
-
+    
+    public void updateBarang(int id, int jumlah,String kondisi){
+        Database db = new Database();
+        String s = "update barang_gudang set jumlah = "+jumlah+", kondisi = '"+kondisi
+                +"' where id_barang = "+id+" and id_gudang = "+getID();
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void deleteDBBarang(int id){
+        Database db = new Database();
+        String s = "delete from barang_gudang where id_barang = "+id+" and id_gudang = "+getID();
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    */
     public int findBarang(int id) {
         for (int i = 0; i < jumBarang; i++) {
-            if (daftarBarang[i].getID() == id) {
+            if (daftarBarang.get(i).getID() == id) {
                 return i;
             }
         }
@@ -47,25 +81,22 @@ public class Gudang {
 
     public void view() {
         for (int i = 0; i < jumBarang; i++) {
-            daftarBarang[i].view2();
+            daftarBarang.get(i).view2();
         }
     }
 
     public Barang getBarang(int id) {
-        if (daftarBarang[id].getID() == id) {
-            return daftarBarang[id];
-        } else {
-            return daftarBarang[0];
-        }
+        if (findBarang(id)!= -1)
+            return daftarBarang.get(findBarang(id));
+        else
+            return null;
     }
 
     public void deleteBarang(int id) {
         int idx = findBarang(id);
         if (idx != -1) {
-            for (int i = idx; i < jumBarang - 1; i++) {
-                jumBarang = jumBarang - 1;
-                daftarBarang[i] = daftarBarang[i + 1];
-            }
+            daftarBarang.remove(idx);
+            jumBarang = daftarBarang.size();
             System.out.println("\nData barang berhasil dihapus");
         } else {
             System.out.println("\nData barang tidak ada");

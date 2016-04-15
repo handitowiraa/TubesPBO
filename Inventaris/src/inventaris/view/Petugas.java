@@ -41,6 +41,7 @@ public class Petugas extends javax.swing.JFrame {
         btnMasukSimpan = new javax.swing.JButton();
         btnMasukTambah = new javax.swing.JButton();
         btnMasukHapus = new javax.swing.JButton();
+        btnMasukTambah1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblKelolaNama = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -88,6 +89,8 @@ public class Petugas extends javax.swing.JFrame {
 
         btnMasukHapus.setText("HAPUS");
 
+        btnMasukTambah1.setText("CARI");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,18 +106,20 @@ public class Petugas extends javax.swing.JFrame {
                             .addComponent(btnMasukHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnMasukSimpan))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMasukNama)
+                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(cmbMasukPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnMasukSimpan)))
+                                .addComponent(cmbMasukPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnMasukTambah1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,8 +133,9 @@ public class Petugas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(cmbMasukPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                            .addComponent(cmbMasukPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMasukTambah1))
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +146,7 @@ public class Petugas extends javax.swing.JFrame {
                                 .addComponent(btnMasukHapus)))))
                 .addGap(18, 18, 18)
                 .addComponent(btnMasukSimpan)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         tpPetugas.addTab("Masukkan Barang", jPanel1);
@@ -424,6 +430,7 @@ public class Petugas extends javax.swing.JFrame {
     private javax.swing.JButton btnMasukHapus;
     private javax.swing.JButton btnMasukSimpan;
     private javax.swing.JButton btnMasukTambah;
+    private javax.swing.JButton btnMasukTambah1;
     private javax.swing.JComboBox<String> cmbCari;
     private javax.swing.JComboBox<String> cmbMasukPenyedia;
     private javax.swing.JLabel jLabel1;
