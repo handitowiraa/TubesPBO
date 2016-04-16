@@ -45,7 +45,6 @@ public class Gudang {
         b.setID(id2);
         daftarBarang.add(b);
         jumBarang = daftarBarang.size();
-        System.out.println(jumBarang);
     }
         
     public void addBarangFromDatabase(Barang b, String kondisi) {

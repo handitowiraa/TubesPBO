@@ -7,6 +7,7 @@ package driver;
 
 import controller.Controller;
 import inventaris.Aplikasi;
+import viewConsole.Console;
 
 /**
  *
@@ -19,10 +20,11 @@ public class Driver {
      */
     public static void main(String[] args) {
         Aplikasi app = new Aplikasi();
-        new Controller(app);
+        //new Controller(app);
         
         //Aplikasi Console
-        //app.menuUtama();
+        Console view = new Console(app);
+        view.menuUtama();
     }
     
 }
