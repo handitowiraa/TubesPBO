@@ -1,0 +1,2 @@
+Database menggunakan mySQL. Seluruh kode untuk implementasi database tidak diaktifkan. Jika akan diaktifkan, hilangkan
+komen untuk kode bersangkutan. Tabel ada di file Tabel.sql.
