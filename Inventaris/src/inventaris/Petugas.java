@@ -11,9 +11,9 @@ package inventaris;
  */
 public class Petugas extends Orang {
 
-    private long idPetugas;
+    private int idPetugas;
 
-    public Petugas(long id, String nama, String username, String password) {
+    public Petugas(int id, String nama, String username, String password) {
         super(nama, username, password);
         idPetugas = id;
     }
@@ -21,20 +21,19 @@ public class Petugas extends Orang {
     /**
      * @return the idPetugas
      */
-    public long getIdPetugas() {
+    public int getIdPetugas() {
         return idPetugas;
     }
 
     /**
      * @param idPetugas the idPetugas to set
      */
-    public void setIdPetugas(long idPetugas) {
+    public void setIdPetugas(int idPetugas) {
         this.idPetugas = idPetugas;
     }
 
     public void tambahBarang(Gudang g, Barang b, String kondisi,int id2) {
-        b.setID(id2);
-        g.addBarang(b, kondisi);
+        g.addBarang(b, kondisi,id2);
     }
 
     public void ubahBarang(Gudang g, int n, int jum, String kondisi) {

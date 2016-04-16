@@ -29,33 +29,30 @@ public class Aplikasi {
         daftarGudang = new ArrayList<>();
     }
 
-    public void addPenyedia(long id, String nama, String username, String password) {
-        if (jumOrang < 100) {
-            if (getPenyedia(id) == null) {
-                if (!(cariUsername(username))) {
-                    daftarOrang.add(new Penyedia(id, nama, username, password));
-                    jumOrang=daftarOrang.size();
-                } else {
-                    System.out.println("Username sudah digunakan");
-                }
-            } else {
-                System.out.println("ID sudah digunakan");
-            }
+    
+    /*public void updatePenyedia(int id, String nama, String user, String pass){
+        Database db = new Database();
+        String s = "update penyedia set nama = '"+nama+"', username = '"+user
+                +"', password = '"+pass+"' where id_penyedia = "+id;
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
-    /*
+    
     public void readAllGudang(){
         Database db = new Database();
-        String s = "Select id_gudang from gudang";
+        String s = "Select id_gudang, nama_gudang from gudang";
         ResultSet rs = db.getData(s);
         try {
             while(rs.next()){
-                Gudang g = new Gudang(rs.getInt("id_gudang"));
+                Gudang g = new Gudang(rs.getInt("id_gudang"),rs.getString("nama_gudang"));
                 s = "Select id_barang, nama_barang, jumlah, kondisi from barang_gudang where id_gudang = "+rs.getInt("id_gudang");
                 ResultSet rs2 = db.getData(s);
                 while(rs2.next()){
                     Barang b = new Barang(rs2.getInt("id_barang"),rs2.getString("nama_barang"),rs2.getInt("jumlah"));
-                    g.addBarang(b,rs2.getString("kondisi"));
+                    g.addBarangFromDatabase(b,rs2.getString("kondisi"));
                 }
                 daftarGudang.add(g);
             }
@@ -127,6 +124,16 @@ public class Aplikasi {
         }
     }
     
+    public void saveGudang(int id, String nama){
+        Database db = new Database();
+        String s = "insert into gudang values("+id+",'"+nama+"')";
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
     public void delete2Petugas(int id){
         Database db = new Database();
         String s = "delete from petugas where id_petugas = "+id;
@@ -149,7 +156,7 @@ public class Aplikasi {
     
     public void delete2Gudang(int id){
         Database db = new Database();
-        String s = "delete from gudang where gudang = "+id;
+        String s = "delete from gudang where id_gudang = "+id;
         try {
             db.query(s);
         } catch (SQLException ex) {
@@ -157,7 +164,22 @@ public class Aplikasi {
         }
     }
     */
-    public void addPetugas(long id, String nama, String username, String password) {
+    public void addPenyedia(int id, String nama, String username, String password) {
+        if (jumOrang < 100) {
+            if (getPenyedia(id) == null) {
+                if (!(cariUsername(username))) {
+                    daftarOrang.add(new Penyedia(id, nama, username, password));
+                    jumOrang=daftarOrang.size();
+                } else {
+                    System.out.println("Username sudah digunakan");
+                }
+            } else {
+                System.out.println("ID sudah digunakan");
+            }
+        }
+    }
+    
+    public void addPetugas(int id, String nama, String username, String password) {
         if (jumOrang < 100) {
             if (getPetugas(id) == null) {
                 if (!(cariUsername(username))) {
@@ -172,7 +194,58 @@ public class Aplikasi {
         }
     }
 
-    public Petugas getPetugas(long id) {
+    public void updatePetugas(int id, String nama, String user, String pass){
+        Database db = new Database();
+        String s = "update Petugas set nama = '"+nama+"', username = '"+user
+                +"', password = '"+pass+"' where id_Petugas = "+id;
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateGudang(int id, String nama){
+        Database db = new Database();
+        String s = "update gudang set nama_gudang = '"+nama+"' where id_Gudang = "+id;
+        try {
+            db.query(s);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void ubahPenyedia(int id, String nama, String username, String password) {
+        Penyedia p = getPenyedia(id);
+        p.setNama(nama);
+        p.setUsername(username);
+        p.setPassword(password);
+    }
+    
+    public Gudang ambilGudang(int n){
+        return daftarGudang.get(n);
+    }
+    
+    public ArrayList<Gudang> getListGudang(){
+        return daftarGudang;
+    }
+    
+    public Orang getOrang(int n){
+        return daftarOrang.get(n);
+    }
+    
+    public ArrayList<Orang> getListOrang(){
+        return daftarOrang;
+    }
+    
+    public void ubahPetugas(int id, String nama, String username, String password) {
+        Petugas p = getPetugas(id);
+        p.setNama(nama);
+        p.setUsername(username);
+        p.setPassword(password);
+    }
+    
+    public Petugas getPetugas(int id) {
         for (int i = 0; i < jumOrang; i++) {
             if (daftarOrang.get(i) instanceof Petugas) {
                 Petugas pt = (Petugas) daftarOrang.get(i);
@@ -195,8 +268,40 @@ public class Aplikasi {
         }
         return null;
     }
+    
+    public int hitungPenyedia(){
+        int jumlah = 0;
+        for (Orang i : daftarOrang){
+            if (i instanceof Penyedia){
+                jumlah++;
+            }
+        }
+        return jumlah;
+    }
+    
+    public String[] getIDPenyedia(){
+        String[] s = new String[hitungPenyedia()];
+        int j = 0;
+        for (Orang i : daftarOrang){
+            if (i instanceof Penyedia){
+                s[j] = String.valueOf(((Penyedia) i).getID());
+                j++;
+            }
+        }
+        return s;
+    }
+    
+    public String[] getIDGudang(){
+        String[] s = new String[daftarGudang.size()];
+        int j = 0;
+        for (Gudang i : daftarGudang){
+            s[j] = String.valueOf(i.getID());
+            j++;
+        }
+        return s;
+    }
 
-    public Penyedia getPenyedia(long id) {
+    public Penyedia getPenyedia(int id) {
         for (int i = 0; i < jumOrang; i++) {
             if (daftarOrang.get(i) instanceof Penyedia) {
                 Penyedia py = (Penyedia) daftarOrang.get(i);
@@ -254,6 +359,11 @@ public class Aplikasi {
             jumGudang = daftarGudang.size();
         }
     }
+    
+    public void tambahGudang(int id, String nama) {
+        daftarGudang.add(new Gudang(id,nama));
+        jumGudang = daftarGudang.size();
+    }
 
     public Gudang getGudang(int id) {
         for (int i = 0; i < jumGudang; i++) {
@@ -262,6 +372,11 @@ public class Aplikasi {
             }
         }
         return null;
+    }
+    
+    public void ubahGudang(int id, String nama){
+        Gudang g = getGudang(id);
+        g.setNama_gudang(nama);
     }
 
     public void deleteGudang(int id) {
@@ -320,6 +435,14 @@ public class Aplikasi {
         py.view();
     }
 
+    public void menuPtInputBrg(Gudang g, Barang b){
+        b.setKondisi("Baik");
+        g.addBarang(b,b.getKondisi(), b.getID());
+        //g.saveBarang(b,b.getID());
+    }
+    
+    
+    
     public void menuPtTambahBrg(Petugas pt, Penyedia py, Gudang g, int id, int id2) {
         if (py.findBarang(id) != -1) {
             if (g.findBarang(id2) != -1){
@@ -346,10 +469,10 @@ public class Aplikasi {
     }
 
     public void menuPtDeleteBrg(Petugas pt, Gudang g, int id) {
-        pt.hapusBarang(g, id);
+        pt.hapusBarang(g,id);
         //g.deleteDBBarang(id);
     }
-
+   
     public void menuPtViewGudang(int id) {
         Gudang g = getGudang(id);
         if (g != null) {
@@ -479,164 +602,150 @@ public class Aplikasi {
         }
     }
 
+    public void menuAdmin() {
+        Scanner s1 = new Scanner(System.in);
+        Scanner s2 = new Scanner(System.in);
+        int pil2 = 0;
+        String coba = "N";
+        while (pil2 != 7) {
+            System.out.println("\nMENU ADMIN\n1. Tambah Petugas\n2. Hapus Petugas");
+            System.out.println("3. Tambah Penyedia\n4. Hapus Penyedia\n5. Tambah Gudang");
+            System.out.print("6. Hapus Gudang\n7. Keluar\nPilihan : ");
+            pil2 = s1.nextInt();
+            switch (pil2) {
+                case 1: {
+                    System.out.print("ID Petugas\t: ");
+                    int id = s1.nextInt();
+                    System.out.print("Nama Petugas\t: ");
+                    String nama = s2.nextLine();
+                    System.out.print("Username\t: ");
+                    String user = s2.nextLine();
+                    System.out.print("Password\t: ");
+                    String pass = s2.nextLine();
+                    if(getPetugas(id)==null){
+                        if(getUserPenyedia(user)==null&&getUserPetugas(user)==null){
+                            addPetugas(id, nama, user, pass);
+                            //savePetugas(id,nama,user,pass);
+                            System.out.println("Data berhasil disimpan");
+                        }
+                        else
+                            System.out.println("Username sudah ada");
+                    } else System.out.println("ID sudah digunakan");
+                    break;
+                }
+                case 2: {
+                    System.out.print("ID Petugas dihapus\t: ");
+                    int id = s1.nextInt();
+                    if(getPetugas(id)==null){
+                        System.out.println("Data tidak ada");
+                    } else {
+                        deletePetugas(id);
+                        //delete2Petugas(id);
+                        System.out.println("Data berhasil dihapus");
+                    }
+                    break;
+                }
+                case 3: {
+                    System.out.print("ID Penyedia\t: ");
+                    int id = s1.nextInt();
+                    System.out.print("Nama Penyedia\t: ");
+                    String nama = s2.nextLine();
+                    System.out.print("Username\t: ");
+                    String user = s2.nextLine();
+                    System.out.print("Password\t: ");
+                    String pass = s2.nextLine();
+                    if(getPenyedia(id)==null){
+                        if(getUserPenyedia(user)==null&&getUserPetugas(user)==null){
+                            addPenyedia(id, nama, user, pass);
+                            //savePenyedia(id,nama,user,pass);
+                            System.out.println("Data berhasil disimpan");
+                        }
+                        else
+                            System.out.println("Username sudah ada");
+                    } else System.out.println("ID sudah digunakan");
+                    break;
+                }
+                case 4: {
+                    System.out.print("ID Penyedia dihapus\t: ");
+                    int id = s1.nextInt();
+                    if(getPenyedia(id)==null){
+                        System.out.println("Data tidak ada");
+                    } else {
+                        deletePenyedia(id);
+                        //delete2Penyedia(id);
+                        System.out.println("Data berhasil dihapus");
+                    }
+                    break;
+                }
+                case 5: {
+                    System.out.print("ID Gudang\t: ");
+                    int id = s1.nextInt();
+                    if (getGudang(id)!=null)
+                        System.out.println("ID sudah digunakan");
+                    else {
+                        addGudang(id);
+                        //saveGudang(id);
+                        System.out.println("Data berhasil disimpan");
+                    }
+                    break;
+                }
+                case 6: {
+                    System.out.print("ID Gudang dihapus\t: ");
+                    int id = s1.nextInt();
+                    if(getGudang(id)==null){
+                        System.out.println("Data tidak ada");
+                    } else {
+                        deleteGudang(id);
+                        //delete2Gudang(id);
+                        System.out.println("Data berhasil dihapus");
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    public Orang login(String user, String pass){
+        boolean masuk = false;
+        int i = 0;
+        while (i < jumOrang) {
+            if ((daftarOrang.get(i).getUsername()).equals(user)) {
+                if ((daftarOrang.get(i).getPassword()).equals(pass)) {
+                    return daftarOrang.get(i);
+                }
+            }
+            i++;
+        }
+        return null;
+    }
+    
     public void menuUtama() {
         Scanner s1 = new Scanner(System.in);
         Scanner s2 = new Scanner(System.in);
         int pil = 0;
         //readAllOrang();
         //readAllGudang();          
-        while (pil != 3) {
-            System.out.println("\nMENU\n1. Login Admin\n2. Login Pegawai");
-            System.out.print("3. Keluar\nPilihan: ");
+        while (pil != 2) {
+            System.out.println("\nMENU\n1. Login");
+            System.out.print("2. Keluar\nPilihan: ");
             pil = s1.nextInt();
             switch (pil) {
                 case 1: {
-                    String user, pass, coba = "Y";
-                    while (coba.equalsIgnoreCase("Y")) {
-                        System.out.print("Username : ");
-                        user = s2.nextLine();
-                        System.out.print("Password : ");
-                        pass = s2.nextLine();
-                        if ((user.equals("admin")) && (pass.equals("admin"))) {
-                            int pil2 = 0;
-                            coba = "N";
-                            while (pil2 != 7) {
-                                System.out.println("\nMENU ADMIN\n1. Tambah Petugas\n2. Hapus Petugas");
-                                System.out.println("3. Tambah Penyedia\n4. Hapus Penyedia\n5. Tambah Gudang");
-                                System.out.print("6. Hapus Gudang\n7. Keluar\nPilihan : ");
-                                pil2 = s1.nextInt();
-                                switch (pil2) {
-                                    case 1: {
-                                        System.out.print("ID Petugas\t: ");
-                                        int id = s1.nextInt();
-                                        System.out.print("Nama Petugas\t: ");
-                                        String nama = s2.nextLine();
-                                        System.out.print("Username\t: ");
-                                        user = s2.nextLine();
-                                        System.out.print("Password\t: ");
-                                        pass = s2.nextLine();
-                                        if(getPetugas(id)==null){
-                                            if(getUserPenyedia(user)==null&&getUserPetugas(user)==null){
-                                                addPetugas(id, nama, user, pass);
-                                                //savePetugas(id,nama,user,pass);
-                                                System.out.println("Data berhasil disimpan");
-                                            }
-                                            else
-                                                System.out.println("Username sudah ada");
-                                        } else System.out.println("ID sudah digunakan");
-                                        break;
-                                    }
-                                    case 2: {
-                                        System.out.print("ID Petugas dihapus\t: ");
-                                        int id = s1.nextInt();
-                                        if(getPetugas(id)==null){
-                                            System.out.println("Data tidak ada");
-                                        } else {
-                                            deletePetugas(id);
-                                            //delete2Petugas(id);
-                                            System.out.println("Data berhasil dihapus");
-                                        }
-                                        break;
-                                    }
-                                    case 3: {
-                                        System.out.print("ID Penyedia\t: ");
-                                        int id = s1.nextInt();
-                                        System.out.print("Nama Penyedia\t: ");
-                                        String nama = s2.nextLine();
-                                        System.out.print("Username\t: ");
-                                        user = s2.nextLine();
-                                        System.out.print("Password\t: ");
-                                        pass = s2.nextLine();
-                                        if(getPenyedia(id)==null){
-                                            if(getUserPenyedia(user)==null&&getUserPetugas(user)==null){
-                                                addPenyedia(id, nama, user, pass);
-                                                //savePenyedia(id,nama,user,pass);
-                                                System.out.println("Data berhasil disimpan");
-                                            }
-                                            else
-                                                System.out.println("Username sudah ada");
-                                        } else System.out.println("ID sudah digunakan");
-                                        break;
-                                    }
-                                    case 4: {
-                                        System.out.print("ID Penyedia dihapus\t: ");
-                                        int id = s1.nextInt();
-                                        if(getPenyedia(id)==null){
-                                            System.out.println("Data tidak ada");
-                                        } else {
-                                            deletePenyedia(id);
-                                            //delete2Penyedia(id);
-                                            System.out.println("Data berhasil dihapus");
-                                        }
-                                        break;
-                                    }
-                                    case 5: {
-                                        System.out.print("ID Gudang\t: ");
-                                        int id = s1.nextInt();
-                                        if (getGudang(id)!=null)
-                                            System.out.println("ID sudah digunakan");
-                                        else {
-                                            addGudang(id);
-                                            //saveGudang(id);
-                                            System.out.println("Data berhasil disimpan");
-                                        }
-                                        break;
-                                    }
-                                    case 6: {
-                                        System.out.print("ID Gudang dihapus\t: ");
-                                        int id = s1.nextInt();
-                                        if(getGudang(id)==null){
-                                            System.out.println("Data tidak ada");
-                                        } else {
-                                            deleteGudang(id);
-                                            //delete2Gudang(id);
-                                            System.out.println("Data berhasil dihapus");
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                        } else {
-                            System.out.println("LOGIN GAGAL");
-                            System.out.print("Login Lagi?[Y/N] ");
-                            coba = s2.nextLine();
-                        }
-                    }
+                    String user, pass;
+                    System.out.print("Username : ");
+                    user = s2.nextLine();
+                    System.out.print("Password : ");
+                    pass = s2.nextLine();
+                    if (user.equals("admin")&&(pass.equals("admin")))
+                        menuAdmin();
+                    else
+                        if(login(user,pass) instanceof Petugas)
+                            menuPetugas((Petugas) login(user,pass));
+                        else if(login(user,pass) instanceof Penyedia)
+                            menuPenyedia((Penyedia) login(user,pass));
+                        else if(login(user,pass) == null)
+                            System.out.println("Login gagal");
                     break;
-                }
-                case 2: {
-                    String user, pass, coba = "Y";
-                    while ((coba.equals("Y")) || (coba.equals("y"))) {
-                        System.out.print("Username : ");
-                        user = s2.nextLine();
-                        System.out.print("Password : ");
-                        pass = s2.nextLine();
-                        int i = 0;
-                        boolean masuk = false;
-                        while (i < jumOrang) {
-                            if ((daftarOrang.get(i).getUsername()).equals(user)) {
-                                if ((daftarOrang.get(i).getPassword()).equals(pass)) {
-                                    masuk = true;
-                                    break;
-                                }
-                            }
-                            i++;
-                        }
-                        if (masuk) {
-                            if (daftarOrang.get(i) instanceof Penyedia) {
-                                Penyedia py = (Penyedia) daftarOrang.get(i);
-                                menuPenyedia(py);
-                            } else {
-                                Petugas pt = (Petugas) daftarOrang.get(i);
-                                menuPetugas(pt);
-                            }
-                            coba = "N";
-                        } else {
-                            System.out.println("LOGIN GAGAL");
-                            System.out.print("Login Lagi?[Y/N] ");
-                            coba = s2.nextLine();
-                        }
-                    }
                 }
             }
         }

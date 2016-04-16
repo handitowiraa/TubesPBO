@@ -15,15 +15,29 @@ public class Barang {
     private String namaBarang;
     private int jumlah;
     private String kondisi;
+    private int idLama;
 
     public Barang(int id, String nama, int jumlah) {
         idBarang = id;
         namaBarang = nama;
         this.jumlah = jumlah;
+        this.idLama = id;
     }
 
+    public String outString(){
+        return "ID."+idBarang+" "+namaBarang;
+    }
+    
     public void setID(int id) {
         idBarang = id;
+    }
+    
+    public void setIDLama(int id) {
+        idLama = id;
+    }
+    
+    public int getIDLama() {
+        return idLama;
     }
 
     public void setKondisi(String k) {

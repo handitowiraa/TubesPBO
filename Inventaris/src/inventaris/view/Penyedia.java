@@ -7,6 +7,7 @@ package inventaris.view;
 
 import inventaris.Barang;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,9 +42,9 @@ public class Penyedia extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtIdBarang = new javax.swing.JTextField();
         txtNamaBarang = new javax.swing.JTextField();
         spinJumBarang = new javax.swing.JSpinner();
+        spinIDBarang = new javax.swing.JSpinner();
 
         btnSimpan.setText("SIMPAN");
 
@@ -80,23 +81,21 @@ public class Penyedia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addComponent(btnSimpan))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
+                        .addGap(148, 148, 148)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIdBarang)
-                                    .addComponent(txtNamaBarang)
-                                    .addComponent(spinJumBarang)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(btnSimpan))))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNamaBarang)
+                            .addComponent(spinJumBarang)
+                            .addComponent(spinIDBarang)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -115,25 +114,26 @@ public class Penyedia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNama)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(spinJumBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(spinIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spinJumBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSimpan)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit)
                     .addComponent(btnHapus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -149,18 +149,38 @@ public class Penyedia extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblNama;
+    private javax.swing.JSpinner spinIDBarang;
     private javax.swing.JSpinner spinJumBarang;
     private javax.swing.JTable tbPenyedia;
-    private javax.swing.JTextField txtIdBarang;
     private javax.swing.JTextField txtNamaBarang;
     // End of variables declaration//GEN-END:variables
 
-    public String getID(){
-        return txtIdBarang.getText();
+    public int getID(){
+        return (Integer) spinIDBarang.getValue();
+    }
+    
+    public void deactivateID(){
+        spinIDBarang.setEnabled(false);
+    }
+    
+    public void activateID(){
+        spinIDBarang.setEnabled(true);
     }
     
     public String getNama(){
         return txtNamaBarang.getText();
+    }
+    
+    public void deactivateNama(){
+        txtNamaBarang.setEnabled(false);
+    }
+    
+    public void activateNama(){
+        txtNamaBarang.setEnabled(true);
+    }
+    
+    public boolean getStatusNama(){
+        return txtNamaBarang.isEnabled();
     }
     
     public int getJumlah(){
@@ -201,13 +221,13 @@ public class Penyedia extends javax.swing.JPanel {
     }
     
     public void refresh() {
-        txtIdBarang.setText("");
+        spinIDBarang.setValue(0);
         txtNamaBarang.setText("");
         spinJumBarang.setValue(0);
     }
     
     public void refreshEdit(Barang b) {
-        txtIdBarang.setText(String.valueOf(b.getID()));
+        spinIDBarang.setValue(b.getID());
         txtNamaBarang.setText(b.getNama());
         spinJumBarang.setValue(b.getJumlah());
     }
@@ -216,5 +236,9 @@ public class Penyedia extends javax.swing.JPanel {
         btnSimpan.addActionListener(e);
         btnEdit.addActionListener(e);
         btnHapus.addActionListener(e);
+    }
+    
+    public void addAdapter(MouseAdapter e){
+        tbPenyedia.addMouseListener(e);
     }
 }

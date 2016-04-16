@@ -16,25 +16,39 @@ import java.util.ArrayList;
 public class Penyedia extends Orang {
 
     private ArrayList<Barang> daftarBarang;
-    private long id_penyedia;
+    private int id_penyedia;
     protected int jumBarang = 0;
 
-    public Penyedia(long id, String nama, String username, String password) {
+    public Penyedia(int id, String nama, String username, String password) {
         super(nama, username, password);
         daftarBarang = new ArrayList<>();
         id_penyedia = id;
     }
 
-    public void setID(long id) {
+    public void setID(int id) {
         id_penyedia = id;
     }
 
-    public long getID() {
+    public int getID() {
         return id_penyedia;
     }
 
     public Barang getBarang(int n) {
         return daftarBarang.get(n);
+    }
+    
+    public String[] getListDataBarang(){
+        String[] s = new String[daftarBarang.size()];
+        int j = 0;
+        for (Barang i : daftarBarang){
+            s[j] = "ID."+String.valueOf(i.getID())+" "+i.getNama();
+            j++;
+        }
+        return s;
+    }
+    
+    public ArrayList<Barang> getListBarang() {
+        return daftarBarang;
     }
 
     public void createBarang(int id, String nama, int jumlah) {

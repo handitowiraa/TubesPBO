@@ -3,19 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inventaris;
+package driver;
+
+import controller.Controller;
+import inventaris.Aplikasi;
 
 /**
  *
- * @author YouuKey
+ * @author Emp. Elesar II
  */
-public class Inventaris {
+public class Driver {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Aplikasi console = new Aplikasi();
-        console.menuUtama();
+        Aplikasi app = new Aplikasi();
+        new Controller(app);
+        
+        //Aplikasi Console
+        //app.menuUtama();
     }
+    
 }
