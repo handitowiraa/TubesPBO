@@ -20,11 +20,12 @@ public class Driver {
      */
     public static void main(String[] args) {
         Aplikasi app = new Aplikasi();
-        //new Controller(app);
+        //GUI nya
+        new Controller(app);
         
         //Aplikasi Console
         Console view = new Console(app);
-        view.menuUtama();
+        //view.menuUtama();
     }
     
 }

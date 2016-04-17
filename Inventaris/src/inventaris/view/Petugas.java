@@ -536,6 +536,12 @@ public class Petugas extends javax.swing.JPanel {
         }
     }
     
+    public void setComboPenyediaMasukNull(String[] id){
+        for (String i : id){
+            cmbMasukPenyedia.removeItem(i);
+        }
+    }
+    
     public int getMasukIDGudang(){
         return Integer.parseInt((String) cbMasukIdGudang.getSelectedItem());
     }
@@ -543,6 +549,12 @@ public class Petugas extends javax.swing.JPanel {
     public void setComboGudangMasuk(String[] id){
         for (String i : id){
             cbMasukIdGudang.addItem(i);
+        }
+    }
+    
+    public void setComboGudangMasukNull(String[] id){
+        for (String i : id){
+            cbMasukIdGudang.removeItem(i);
         }
     }
     
@@ -608,6 +620,12 @@ public class Petugas extends javax.swing.JPanel {
     public void setComboGudangKelola(String[] id){
         for (String i : id){
             cbIdGudangKelola.addItem(i);
+        }
+    }
+    
+    public void setComboGudangKelolaNull(String[] id){
+        for (String i : id){
+            cbIdGudangKelola.removeItem(i);
         }
     }
     
@@ -706,6 +724,12 @@ public class Petugas extends javax.swing.JPanel {
         }
     }
     
+    public void setComboGudangCariNull(String[] id){
+        for (String i : id){
+            cbIdGudangCari.removeItem(i);
+        }
+    }
+    
     public Object getBtnCariCari(){
         return btnCariCari;
     }
@@ -755,6 +779,12 @@ public class Petugas extends javax.swing.JPanel {
     public void setComboGudangView(String[] id){
         for (String i : id){
             cbIdGudangView.addItem(i);
+        }
+    }
+    
+    public void setComboGudangViewNull(String[] id){
+        for (String i : id){
+            cbIdGudangView.removeItem(i);
         }
     }
     

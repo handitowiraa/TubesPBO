@@ -96,6 +96,11 @@ public class Controller extends MouseAdapter implements ActionListener {
             id_br_seleksi = -1;
             id_or_seleksi = -1;
             id_gd_seleksi = -1;
+            pt.setComboPenyediaMasukNull(model.getIDPenyedia());
+            pt.setComboGudangMasukNull(model.getIDGudang());
+            pt.setComboGudangCariNull(model.getIDGudang());
+            pt.setComboGudangKelolaNull(model.getIDGudang());
+            pt.setComboGudangViewNull(model.getIDGudang());
         }
         //------------------------------------------------MENU LOGIN-------------------------------------------------//
         if (currentView.equals("0")) {
