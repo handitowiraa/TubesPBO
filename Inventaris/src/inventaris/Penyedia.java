@@ -17,7 +17,7 @@ public class Penyedia extends Orang {
 
     private ArrayList<Barang> daftarBarang;
     private int id_penyedia;
-    protected int jumBarang = 0;
+    private int jumBarang = 0;
 
     public Penyedia(int id, String nama, String username, String password) {
         super(nama, username, password);
@@ -53,14 +53,13 @@ public class Penyedia extends Orang {
 
     public void createBarang(int id, String nama, int jumlah) {
         daftarBarang.add(new Barang(id, nama, jumlah));
-        jumBarang = daftarBarang.size();
+        setJumBarang(daftarBarang.size());
     }
 
     public int findBarang(int id) {
-        for (int i = 0; i < jumBarang; i++) {
-            if (daftarBarang.get(i).getID() == id) {
-                return i;
-            }
+        for(Barang b : daftarBarang){
+            if (b.getID()==id)
+                return daftarBarang.indexOf(b);
         }
         return -1;
     }
@@ -97,7 +96,7 @@ public class Penyedia extends Orang {
     }
     */
     public void view() {
-        for (int i = 0; i < jumBarang; i++) {
+        for (int i = 0; i < getJumBarang(); i++) {
             daftarBarang.get(i).view1();
             System.out.println();
         }
@@ -107,7 +106,7 @@ public class Penyedia extends Orang {
         int j = findBarang(id);
         if (j != -1) {
             daftarBarang.remove(j);
-            jumBarang = daftarBarang.size();
+            setJumBarang(daftarBarang.size());
         } else System.out.println("Data barang tidak ada");
     }
 
@@ -120,5 +119,19 @@ public class Penyedia extends Orang {
 
     public String toString() {
         return "ID\t: " + id_penyedia + "\nNama\t: " + super.getNama();
+    }
+
+    /**
+     * @return the jumBarang
+     */
+    public int getJumBarang() {
+        return jumBarang;
+    }
+
+    /**
+     * @param jumBarang the jumBarang to set
+     */
+    public void setJumBarang(int jumBarang) {
+        this.jumBarang = jumBarang;
     }
 }

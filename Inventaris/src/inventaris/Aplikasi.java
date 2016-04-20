@@ -24,24 +24,10 @@ public class Aplikasi {
     private ArrayList<Gudang> daftarGudang;
     int jumOrang = 0;
     int jumGudang = 0;
-    private Scanner sInt;
-    private Scanner sStr;
 
     public Aplikasi() {
         daftarOrang = new ArrayList<>();
         daftarGudang = new ArrayList<>();
-        sInt = new Scanner(System.in);
-        sStr = new Scanner(System.in);
-    }
-      
-    public int inputInteger() {
-        try {
-            return sInt.nextInt();
-        } catch (InputMismatchException e) {
-            throw new InputMismatchException("Input Harus Berupa Angka");
-        } finally {
-            sInt = new Scanner(System.in);
-        }
     }
     
     /*public void updatePenyedia(int id, String nama, String user, String pass){
@@ -455,16 +441,16 @@ public class Aplikasi {
         //g.saveBarang(b,b.getID());
     }
     
-    
-    
     public void menuPtTambahBrg(Petugas pt, Penyedia py, Gudang g, int id, int id2) {
         if (py.findBarang(id) != -1) {
             if (g.findBarang(id2) == -1){
                 String k = "Baik";
-                pt.tambahBarang(g, py.getBarang(py.findBarang(id)), k, id2);
-                //g.saveBarang(py.getBarang(py.findBarang(id)),id2);
-                //py.deleteBarang(id);
+                Barang b = py.getBarang(py.findBarang(id));
                 py.hapusBarang(id);
+                //py.deleteBarang(id);
+                pt.tambahBarang(g, b, k, id2);
+                //g.saveBarang(py.getBarang(py.findBarang(id)),id2);
+                System.out.println("Barang berhasil ditambahkan");
             } else System.out.println("ID Baru sudah digunakan");
         } else {
             System.out.println("Barang tidak ada");
@@ -496,256 +482,6 @@ public class Aplikasi {
         }
     }
 
-    public void menuPenyedia(Penyedia py) {
-        int pil = 0;
-        while (pil != 5) {
-            try {
-                System.out.println("\nMENU PENYEDIA\n1. Tambah Barang\n2. Edit Data Barang\n3. Hapus Barang");
-                System.out.print("4. View Barang\n5. Keluar\nPilihan\t: ");
-                pil = inputInteger();
-                switch (pil) {
-                    case 1: {
-                        System.out.print("ID Barang\t: ");
-                        int id = inputInteger();
-                        System.out.print("Nama Barang\t: ");
-                        String nama = sStr.nextLine();
-                        System.out.print("Jumlah\t\t: ");
-                        int jum = inputInteger();
-                        menuPyTambahBrg(py, id, nama, jum);
-                        break;
-                    }
-                    case 2: {
-                        System.out.print("ID barang diubah\t: ");
-                        int id = inputInteger();
-                        System.out.print("Jumlah\t\t: ");
-                        int jum = inputInteger();
-                        menuPyUbahBrg(py, id, jum);
-                        break;
-                    }
-                    case 3: {
-                        System.out.print("ID barang dihapus\t: ");
-                        int id = inputInteger();
-                        menuPyDeleteBrg(py, id);
-                        break;
-                    }
-                    case 4: {
-                        menuPyView(py);
-                        break;
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Error : " + e.getMessage());
-            } finally {
-                sInt = new Scanner(System.in);
-                sStr = new Scanner(System.in);
-            }
-        }
-    }
-
-    public void menuPetugas(Petugas pt) {
-        int pil = 0;
-        while (pil != 5) {
-            try {
-                System.out.println("\nMENU PETUGAS\n1. Tambah Barang\n2. Edit Data Barang\n3. Hapus Barang");
-                System.out.print("4. View Barang\n5. Keluar\nPilihan\t: ");
-                pil = inputInteger();
-                switch (pil) {
-                    case 1: {
-                        System.out.println("Daftar Penyedia");
-                        for (int i = 0; i < jumOrang; i++) {
-                            if (daftarOrang.get(i) instanceof Penyedia) {
-                                System.out.println(daftarOrang.get(i).toString());
-                            }
-                        }
-                        System.out.print("\nID Penyedia\t: ");
-                        int id = inputInteger();
-                        Penyedia py = getPenyedia(id);
-                        if (py != null){
-                            String lagi = "y";
-                            do {
-                                System.out.println("\nDaftar Barang");
-                                for (int i = 0; i < py.jumBarang; i++) {
-                                    py.getBarang(i).view1();
-                                    System.out.println();
-                                }
-                                System.out.print("ID Barang\t: ");
-                                id = inputInteger();
-                                System.out.print("ID Gudang\t: ");
-                                int idGudang = inputInteger();
-                                if (getGudang(idGudang) != null) {
-                                    System.out.print("ID Barang Baru\t: ");
-                                    int id2 = inputInteger();
-                                    Gudang g = getGudang(idGudang);
-                                    menuPtTambahBrg(pt, py, g, id,id2);
-                                } else
-                                    System.out.println("Gudang tidak ada");
-                                System.out.print("Lagi? [Y/N] ");
-                                lagi = sStr.nextLine();
-                            } while (lagi.equalsIgnoreCase("y"));
-                        } else 
-                            System.out.println("Penyedia tidak ada");
-                        break;
-                    }
-                    case 2: {
-                        System.out.print("ID Gudang\t\t: ");
-                        int idGudang = inputInteger();
-                        Gudang g = getGudang(idGudang);
-                        if (g != null) {
-                            System.out.print("ID barang diubah\t: ");
-                            int id = inputInteger();
-                            if (g.findBarang(id)!=-1){
-                                System.out.print("Jumlah\t\t: ");
-                                int jum = inputInteger();
-                                System.out.print("Kondisi\t\t: ");
-                                String k = sStr.nextLine();
-                                menuPtEditBrg(pt, g, id, jum, k);
-                            } else
-                                System.out.println("Barang tidak ada");
-                        } else {
-                            System.out.println("Gudang tidak ada");
-                        }
-                        break;
-                    }
-                    case 3: {
-                        System.out.print("ID Gudang\t\t: ");
-                        int idGudang = inputInteger();
-                        Gudang g = getGudang(idGudang);
-                        if (g != null) {
-                            System.out.print("ID barang dihapus\t: ");
-                            int id = inputInteger();
-                            if (g.findBarang(id)!=-1)
-                                menuPtDeleteBrg(pt, g, id);
-                            else
-                                System.out.println("Barang tidak ada");
-                        } else {
-                            System.out.println("Gudang tidak ada");
-                        }
-                        break;
-                    }
-                    case 4: {
-                        System.out.print("ID Gudang\t\t: ");
-                        int idGudang = inputInteger();
-                        menuPtViewGudang(idGudang);
-                        break;
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Error : " + e.getMessage());
-            } finally {
-                sInt = new Scanner(System.in);
-                sStr = new Scanner(System.in);
-            }
-        }
-    }
-
-    public void menuAdmin() {
-        int pil2 = 0;
-        String coba = "N";
-        while (pil2 != 7) {
-            try {
-                System.out.println("\nMENU ADMIN\n1. Tambah Petugas\n2. Hapus Petugas");
-                System.out.println("3. Tambah Penyedia\n4. Hapus Penyedia\n5. Tambah Gudang");
-                System.out.print("6. Hapus Gudang\n7. Keluar\nPilihan : ");
-                pil2 = inputInteger();
-                switch (pil2) {
-                    case 1: {
-                        System.out.print("ID Petugas\t: ");
-                        int id = inputInteger();
-                        System.out.print("Nama Petugas\t: ");
-                        String nama = sStr.nextLine();
-                        System.out.print("Username\t: ");
-                        String user = sStr.nextLine();
-                        System.out.print("Password\t: ");
-                        String pass = sStr.nextLine();
-                        if(getPetugas(id)==null){
-                            if(getUserPenyedia(user)==null&&getUserPetugas(user)==null){
-                                addPetugas(id, nama, user, pass);
-                                //savePetugas(id,nama,user,pass);
-                                System.out.println("Data berhasil disimpan");
-                            }
-                            else
-                                System.out.println("Username sudah ada");
-                        } else System.out.println("ID sudah digunakan");
-                        break;
-                    }
-                    case 2: {
-                        System.out.print("ID Petugas dihapus\t: ");
-                        int id = inputInteger();
-                        if(getPetugas(id)==null){
-                            System.out.println("Data tidak ada");
-                        } else {
-                            deletePetugas(id);
-                            //delete2Petugas(id);
-                            System.out.println("Data berhasil dihapus");
-                        }
-                        break;
-                    }
-                    case 3: {
-                        System.out.print("ID Penyedia\t: ");
-                        int id = inputInteger();
-                        System.out.print("Nama Penyedia\t: ");
-                        String nama = sStr.nextLine();
-                        System.out.print("Username\t: ");
-                        String user = sStr.nextLine();
-                        System.out.print("Password\t: ");
-                        String pass = sStr.nextLine();
-                        if(getPenyedia(id)==null){
-                            if(getUserPenyedia(user)==null&&getUserPetugas(user)==null){
-                                addPenyedia(id, nama, user, pass);
-                                //savePenyedia(id,nama,user,pass);
-                                System.out.println("Data berhasil disimpan");
-                            }
-                            else
-                                System.out.println("Username sudah ada");
-                        } else System.out.println("ID sudah digunakan");
-                        break;
-                    }
-                    case 4: {
-                        System.out.print("ID Penyedia dihapus\t: ");
-                        int id = inputInteger();
-                        if(getPenyedia(id)==null){
-                            System.out.println("Data tidak ada");
-                        } else {
-                            deletePenyedia(id);
-                            //delete2Penyedia(id);
-                            System.out.println("Data berhasil dihapus");
-                        }
-                        break;
-                    }
-                    case 5: {
-                        System.out.print("ID Gudang\t: ");
-                        int id = inputInteger();
-                        if (getGudang(id)!=null)
-                            System.out.println("ID sudah digunakan");
-                        else {
-                            addGudang(id);
-                            //saveGudang(id);
-                            System.out.println("Data berhasil disimpan");
-                        }
-                        break;
-                    }
-                    case 6: {
-                        System.out.print("ID Gudang dihapus\t: ");
-                        int id = inputInteger();
-                        if(getGudang(id)==null){
-                            System.out.println("Data tidak ada");
-                        } else {
-                            deleteGudang(id);
-                            //delete2Gudang(id);
-                            System.out.println("Data berhasil dihapus");
-                        }
-                        break;
-                    }
-                }
-            } catch (Exception e){
-                System.out.println("Error : " + e.getMessage());
-            } finally {
-                sInt = new Scanner(System.in);
-                sStr = new Scanner(System.in);
-            }
-        }
-    }
-    
     public Orang login(String user, String pass){
         boolean masuk = false;
         int i = 0;
