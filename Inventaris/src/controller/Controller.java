@@ -109,7 +109,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                 String pass = l.getPassword();
                 l.refresh();
                 if (user.equals("")||pass.equals("")){
-                    JOptionPane.showMessageDialog(null, "Username atau Password tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Username atau Password tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else if (user.equals("admin")&&pass.equals("admin")){
                     currentView = "3";
                     view.getCardLayout().show(mainPanel, currentView);
@@ -138,7 +138,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                         view.showLogOutButton();
                         py.setListBarang(p1.getListBarang());
                     } else if (model.login(user,pass) == null){
-                        JOptionPane.showMessageDialog(null, "Username atau Password anda salah", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Username atau Password anda salah", "Peringatan", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -150,24 +150,24 @@ public class Controller extends MouseAdapter implements ActionListener {
                 py.activateNama();
                 py.activateID();
                 if (py.getID()<=0||py.getNama().equals("")) {
-                    JOptionPane.showMessageDialog(null, "ID dan Nama tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "ID dan Nama tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else if (py.getJumlah() < 0){
-                    JOptionPane.showMessageDialog(null, "Jumlah tidak boleh negatif", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Jumlah tidak boleh negatif", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (a) {
                         if (p1.findBarang(py.getID())!=-1) 
-                            JOptionPane.showMessageDialog(null, "ID barang sudah ada", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "ID barang sudah ada", "Peringatan", JOptionPane.ERROR_MESSAGE);
                         else {
                             model.menuPyTambahBrg(p1,py.getID(),py.getNama(),py.getJumlah());
                             py.setListBarang(p1.getListBarang());
                             py.refresh();
-                            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } else {
                         model.menuPyUbahBrg(p1,py.getID(),py.getJumlah());
                         py.setListBarang(p1.getListBarang());
                         py.refresh();
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             } else if (source.equals(py.editButtonPressed())) {
@@ -175,20 +175,20 @@ public class Controller extends MouseAdapter implements ActionListener {
                 py.deactivateNama();
                 py.deactivateID();
                 if (b==null)
-                    JOptionPane.showMessageDialog(null, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 else {
                     py.refreshEdit(b);
                 }
             } else if (source.equals(py.deleteButtonPressed())) {
                 b = p1.getBarang(p1.findBarang(id_br_seleksi));
                 if (b==null)
-                    JOptionPane.showMessageDialog(null, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 else{
-                    int confirm = JOptionPane.showConfirmDialog(null, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    int confirm = JOptionPane.showConfirmDialog(view, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (confirm == JOptionPane.YES_OPTION){
                         model.menuPyDeleteBrg(p1,id_br_seleksi);
                         py.setListBarang(p1.getListBarang());
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                         id_br_seleksi = -1;
                     }
                 }
@@ -203,28 +203,34 @@ public class Controller extends MouseAdapter implements ActionListener {
                 pt.setListBarangPegawai(p1.getListDataBarang());
             } else if (source.equals(pt.getBtnMasukTambah())) {
                 if (id_br_seleksi != -1){
-                    int newId = Integer.parseInt(JOptionPane.showInputDialog(null, "ID Baru untuk Barang:"));
-                    if (g.findBarang(newId)!=-1||findInTemp(newId)!=-1){
-                        JOptionPane.showMessageDialog(null, "ID  Barang sudah ada", "Peringatan", JOptionPane.ERROR_MESSAGE);
-                    } else if (newId <= 0){
-                        JOptionPane.showMessageDialog(null, "ID  Barang tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        b = p1.getBarang(id_br_seleksi);
-                        p1.hapusBarang(b.getID());
-                        b.setIDLama(b.getID());
-                        b.setID(newId);
-                        temp.add(b);
-                        pt.setListBarangPegawai(p1.getListDataBarang());
-                        String[] a = new String[temp.size()]; int i = 0;
-                        for (Barang b : temp){
-                            a[i] = b.outString();
-                            i++;
+                    try {
+                        int newId = Integer.parseInt(JOptionPane.showInputDialog(view, "ID Baru untuk Barang:"));
+                        if (g.findBarang(newId)!=-1||findInTemp(newId)!=-1){
+                            JOptionPane.showMessageDialog(view, "ID  Barang sudah ada", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                        } else if (newId <= 0){
+                            JOptionPane.showMessageDialog(view, "ID  Barang tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            b = p1.getBarang(id_br_seleksi);
+                            p1.hapusBarang(b.getID());
+                            b.setIDLama(b.getID());
+                            b.setID(newId);
+                            temp.add(b);
+                            pt.setListBarangPegawai(p1.getListDataBarang());
+                            String[] a = new String[temp.size()]; int i = 0;
+                            for (Barang b : temp){
+                                a[i] = b.outString();
+                                i++;
+                            }
+                            pt.setListBarangGudang(a);
+                            id_br_seleksi = -1;
                         }
-                        pt.setListBarangGudang(a);
-                        id_br_seleksi = -1;
-                    }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(view, "ID  Barang tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    } //finally {
+                     //   newId = new Integer();
+                    //}
                 } else 
-                    JOptionPane.showMessageDialog(null, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
             } else if (source.equals(pt.getBtnMasukHapus())) {
                 if (id_br_seleksi != -1){
                     Barang b = temp.get(id_br_seleksi);
@@ -240,7 +246,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                     pt.setListBarangGudang(a);
                     id_br_seleksi = -1;
                 } else 
-                    JOptionPane.showMessageDialog(null, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
             } else if (source.equals(pt.getBtnMasukSimpan())) {
                 if (temp.size() >= 0){
                     for (Barang b:temp){
@@ -250,9 +256,9 @@ public class Controller extends MouseAdapter implements ActionListener {
                     temp = new ArrayList<Barang>();
                     id_br_seleksi = -1;
                     pt.RefreshInput();
-                    JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                 } else 
-                JOptionPane.showMessageDialog(null, "Tidak ada perubahan", "Simpan Data", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Tidak ada perubahan", "Simpan Data", JOptionPane.INFORMATION_MESSAGE);
             } 
             //==========================================KELOLA GUDANG================================================//
             else if (source.equals(pt.getBtnKelolaCari())){
@@ -264,34 +270,38 @@ public class Controller extends MouseAdapter implements ActionListener {
                     Barang b = g.loadBarang(id_br_seleksi);
                     pt.refreshEditKelola(b);
                 } else 
-                    JOptionPane.showMessageDialog(null, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
             } else if (source.equals(pt.getBtnKelolaSimpan())){
                 if (id_br_seleksi != -1){
-                    model.menuPtEditBrg(p2,g,pt.getIdBarangEdit(),pt.getJumlahBarangEdit(),pt.getKondisiBarangEdit());
-                    pt.setListKelolaBarang(g.getListBarang());
-                    pt.refreshKelola();
-                    JOptionPane.showMessageDialog(null, "Data berhasil di-update", "Ubah Data", JOptionPane.INFORMATION_MESSAGE);
-                } else if(pt.getJumlahBarangEdit() < 0){
-                    JOptionPane.showMessageDialog(null, "Jumlah tidak boleh negatif", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    if (pt.getJumlahBarangEdit() < 0)
+                        JOptionPane.showMessageDialog(view, "Jumlah tidak boleh negatif", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    else if(pt.getJumlahBarangEdit() > b.getJumlah()){
+                        JOptionPane.showMessageDialog(view, "Jumlah tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        model.menuPtEditBrg(p2,g,pt.getIdBarangEdit(),pt.getJumlahBarangEdit(),pt.getKondisiBarangEdit());
+                        pt.setListKelolaBarang(g.getListBarang());
+                        JOptionPane.showMessageDialog(view, "Data berhasil di-update", "Ubah Data", JOptionPane.INFORMATION_MESSAGE);
+                    } 
                 } else 
-                    JOptionPane.showMessageDialog(null, "Tidak Ada Perubahan", "Ubah Data", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Tidak Ada Perubahan", "Ubah Data", JOptionPane.INFORMATION_MESSAGE);
                 id_br_seleksi = -1;
+                pt.refreshKelola();
             } else if (source.equals(pt.getBtnKelolaHapus())){
                 if (id_br_seleksi != -1){
-                    int confirm = JOptionPane.showConfirmDialog(null, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    int confirm = JOptionPane.showConfirmDialog(view, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (confirm == JOptionPane.YES_OPTION){
                         model.menuPtDeleteBrg(p2,g,g.loadBarang(id_br_seleksi).getID());
                         pt.setListKelolaBarang(g.getListBarang());
                         id_br_seleksi = -1;
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else 
-                    JOptionPane.showMessageDialog(null, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
             }
             //==================================================CARI GUDANG===================================================//
             else if (source.equals(pt.getBtnCariCari())){
                 if(pt.getTxtCari()==null){
-                    JOptionPane.showMessageDialog(null, "Anda belum menginput data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum menginput data", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else {
                     g = model.getGudang(pt.getCariIDGudang());
                     if (pt.getCariKategori().equals("Id Barang")){
@@ -299,7 +309,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                         try {
                             id = Integer.parseInt(pt.getTxtCari());
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "Input Harus Berupa Angka", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "Input Harus Berupa Angka", "Peringatan", JOptionPane.ERROR_MESSAGE);
                         }
                         ArrayList<Barang> t = new ArrayList<>();
                         Barang b = g.getBarang(id);
@@ -308,21 +318,21 @@ public class Controller extends MouseAdapter implements ActionListener {
                         if (t.size() > 0) 
                             pt.setListCariHasil(t);
                         else 
-                            JOptionPane.showMessageDialog(null, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
                     } else if (pt.getCariKategori().equals("Nama Barang")){
                         String nama = pt.getTxtCari();
                         ArrayList<Barang> t = g.cariNama(nama);
                         if (t.size() > 0) 
                             pt.setListCariHasil(t);
                         else 
-                            JOptionPane.showMessageDialog(null, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
                     } else if (pt.getCariKategori().equals("Kondisi Barang")){
                         String kondisi = pt.getTxtCari();
                         ArrayList<Barang> t = g.cariKondisi(kondisi);
                         if (t.size() > 0) 
                             pt.setListCariHasil(t);
                         else 
-                            JOptionPane.showMessageDialog(null, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -332,7 +342,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                 if (g.getListBarang() != null)
                     pt.setListView(g.getListBarang());
                 else 
-                    JOptionPane.showMessageDialog(null, "Tidak Ada Data", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Tidak Ada Data", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         //------------------------------------------------MENU ADMIN-------------------------------------------------//
@@ -341,52 +351,72 @@ public class Controller extends MouseAdapter implements ActionListener {
             if(source.equals(ad.simpanButtonPressed())) {
                 boolean baru = ad.getIDStatus();
                 if ((ad.getIDPenggunaKelola() <= 0)||(ad.getNamaAsliKelola()==null)||(ad.getUsernameKelola()==null)||(ad.getPasswordKelola()==null)){
-                    JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Data tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (baru) {
                         if (ad.getJenisPengguna().equals("Petugas")){
-                            if (model.getPetugas(ad.getIDPenggunaKelola()) == null&&model.getUserPetugas(ad.getUsernameKelola())==null){
-                                model.addPetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                //model.savePetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                ad.setListBarang(model.getListOrang());
-                                ad.refresh();
-                                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            if (model.getPetugas(ad.getIDPenggunaKelola()) == null&&model.getUserPenyedia(ad.getUsernameKelola())==null
+                                    &&!ad.getUsernameKelola().equals("admin")&&model.getUserPetugas(ad.getUsernameKelola())==null){
+                                if (model.cekNama(ad.getNamaAsliKelola())){
+                                    model.addPetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    //model.savePetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    ad.setListBarang(model.getListOrang());
+                                    ad.refresh();
+                                    JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(view, "Nama tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(null, "ID atau Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(view, "ID atau Username sudah dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
                             }
                         } else if (ad.getJenisPengguna().equals("Penyedia")){
-                            if (model.getPenyedia(ad.getIDPenggunaKelola()) == null&&model.getUserPenyedia(ad.getUsernameKelola())==null){
-                                model.addPenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                //model.savePenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                ad.setListBarang(model.getListOrang());
-                                ad.refresh();
-                                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            if (model.getPenyedia(ad.getIDPenggunaKelola()) == null&&model.getUserPenyedia(ad.getUsernameKelola())==null
+                                    &&!ad.getUsernameKelola().equals("admin")&&model.getUserPetugas(ad.getUsernameKelola())==null){
+                                if (model.cekNama(ad.getNamaAsliKelola())){
+                                    model.addPenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    //model.savePenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    ad.setListBarang(model.getListOrang());
+                                    ad.refresh();
+                                    JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(view, "Nama tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(null, "ID atau Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(view, "ID atau Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                     } else {
                         if (ad.getJenisPengguna().equals("Penyedia")){
-                            if (model.getUserPenyedia(ad.getUsernameKelola())==null) {
-                                model.ubahPenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                //model.updatePenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                ad.setListBarang(model.getListOrang());
-                                ad.refresh();
-                                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            if ((model.findUsername(ad.getUsernameKelola())!=-1 && model.findUsername(ad.getUsernameKelola())!=id_or_seleksi)||
+                                    (model.findUsername(ad.getUsernameKelola())!=-1 && model.findUsername(ad.getUsernameKelola())!=id_or_seleksi)) {
+                                JOptionPane.showMessageDialog(view, "Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
                             } else {
-                                JOptionPane.showMessageDialog(null, "Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                if (model.cekNama(ad.getNamaAsliKelola())){
+                                    model.ubahPenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    //model.updatePenyedia(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    ad.setListBarang(model.getListOrang());
+                                    ad.refresh();
+                                    JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(view, "Nama tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                }
                             }
                         } else if (ad.getJenisPengguna().equals("Petugas")){
-                            if (model.getUserPetugas(ad.getUsernameKelola())==null) {
-                                model.ubahPetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                model.updatePetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
-                                ad.setListBarang(model.getListOrang());
-                                ad.refresh();
-                                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            if ((model.findUsername(ad.getUsernameKelola())!=-1 && model.findUsername(ad.getUsernameKelola())!=id_or_seleksi)||
+                                    (model.findUsername(ad.getUsernameKelola())!=-1 && model.findUsername(ad.getUsernameKelola())!=id_or_seleksi)) {
+                                JOptionPane.showMessageDialog(view, "Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
                             } else {
-                                JOptionPane.showMessageDialog(null, "Username sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
-                            }
-                        }
+                                if (model.cekNama(ad.getNamaAsliKelola())){
+                                    model.ubahPetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    //model.updatePetugas(ad.getIDPenggunaKelola(),ad.getNamaAsliKelola(),ad.getUsernameKelola(),ad.getPasswordKelola());
+                                    ad.setListBarang(model.getListOrang());
+                                    ad.refresh();
+                                    JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(view, "Nama tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } 
+                        } ad.refresh();
                     }
                 }
                 id_or_seleksi = -1;
@@ -394,19 +424,18 @@ public class Controller extends MouseAdapter implements ActionListener {
                 ad.activateJenis();
             } else if(source.equals(ad.editButtonPressed())) {
                 if (id_or_seleksi == -1){
-                    JOptionPane.showMessageDialog(null, "Anda belum menginput data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum menginput data", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else if (id_or_seleksi != -1){
                     ad.refreshEdit(model.getOrang(id_or_seleksi));
                 }
                 ad.deactivateJenis();
                 ad.deactivateID();
-                id_or_seleksi = -1;
             } else if(source.equals(ad.deleteButtonPressed())) {
                 Orang o = model.getOrang(id_or_seleksi);
                 if (o==null)
-                    JOptionPane.showMessageDialog(null, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 else{
-                    int confirm = JOptionPane.showConfirmDialog(null, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    int confirm = JOptionPane.showConfirmDialog(view, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (confirm == JOptionPane.YES_OPTION){
                         if (o instanceof inventaris.Penyedia){
                             model.deletePenyedia((int) ((inventaris.Penyedia) o).getID());
@@ -416,7 +445,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                             //model.delete2Petugas((int) ((inventaris.Petugas) o).getIdPetugas());
                         }
                         ad.setListBarang(model.getListOrang());
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                         id_or_seleksi = -1;
                     }
                 }
@@ -426,32 +455,30 @@ public class Controller extends MouseAdapter implements ActionListener {
             else if(source.equals(ad.simpanBtnPressed())) {
                 boolean baru = ad.getIDGudangStatus();
                 if ((ad.getIDGudang() <= 0)||(ad.getNamaGudangKelola()==null)){
-                    JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Data tidak boleh kosong", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (baru) {
                         if (model.getGudang(ad.getIDGudang())==null) {
                             model.tambahGudang(ad.getIDGudang(),ad.getNamaGudangKelola());
                             //model.saveGudang(ad.getIDGudang(),ad.getNamaGudangKelola());
                             ad.setListGudang(model.getListGudang());
-                            ad.refreshGudang();
-                            ad.setListGudang(model.getListGudang());
-                            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            JOptionPane.showMessageDialog(null, "ID Gudang sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(view, "ID Gudang sudan dipakai", "Peringatan", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         model.ubahGudang(ad.getIDGudang(),ad.getNamaGudangKelola());
                         model.updateGudang(ad.getIDGudang(),ad.getNamaGudangKelola());
-                        ad.refreshGudang();
-                        ad.setListGudang(model.getListGudang());
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }
+                } 
+                ad.refreshGudang();
+                ad.setListGudang(model.getListGudang());
                 id_gd_seleksi = -1;
                 ad.activateIDGudang();
             } else if(source.equals(ad.editBtnPressed())) {
                 if (id_gd_seleksi == -1){
-                    JOptionPane.showMessageDialog(null, "Anda belum menginput data", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Anda belum menginput data", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else if (id_gd_seleksi != -1){
                     ad.refreshEditGudang(model.ambilGudang(id_gd_seleksi));
                     System.out.println(id_gd_seleksi);
@@ -461,14 +488,14 @@ public class Controller extends MouseAdapter implements ActionListener {
             } else if(source.equals(ad.deleteBtnPressed())) {
                 inventaris.Gudang o = model.ambilGudang(id_gd_seleksi);
                 if (o==null)
-                    JOptionPane.showMessageDialog(null, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 else{
-                    int confirm = JOptionPane.showConfirmDialog(null, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    int confirm = JOptionPane.showConfirmDialog(view, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (confirm == JOptionPane.YES_OPTION){
                         model.deleteGudang(o.getID());
                         //model.delete2Gudang(o.getID());
                         ad.setListGudang(model.getListGudang());
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(view, "Data Berhasil Dihapus", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                         id_gd_seleksi = -1;
                     }
                 }

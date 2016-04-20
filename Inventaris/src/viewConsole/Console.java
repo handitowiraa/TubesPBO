@@ -202,7 +202,6 @@ public class Console {
                             if(model.getUserPenyedia(user)==null&&model.getUserPetugas(user)==null){
                                 model.addPetugas(id, nama, user, pass);
                                 //savePetugas(id,nama,user,pass);
-                                System.out.println("Data berhasil disimpan");
                             }
                             else
                                 System.out.println("Username sudah ada");
@@ -234,7 +233,6 @@ public class Console {
                             if(model.getUserPenyedia(user)==null&&model.getUserPetugas(user)==null){
                                 model.addPenyedia(id, nama, user, pass);
                                 //savePenyedia(id,nama,user,pass);
-                                System.out.println("Data berhasil disimpan");
                             }
                             else
                                 System.out.println("Username sudah ada");
@@ -261,7 +259,6 @@ public class Console {
                         else {
                             model.addGudang(id);
                             //saveGudang(id);
-                            System.out.println("Data berhasil disimpan");
                         }
                         break;
                     }

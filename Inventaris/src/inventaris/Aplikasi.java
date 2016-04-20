@@ -24,11 +24,22 @@ public class Aplikasi {
     private ArrayList<Gudang> daftarGudang;
     int jumOrang = 0;
     int jumGudang = 0;
+    private String[] angka = {"1","2","3","4","5","6","7","8","9","0"};
 
     public Aplikasi() {
         daftarOrang = new ArrayList<>();
         daftarGudang = new ArrayList<>();
     }
+    
+    public boolean cekNama(String name){
+        boolean benar = true;
+        for (String a : angka){
+            if (name.contains(a))
+                    benar = false;
+        }
+        return benar;
+    }
+    
     
     /*public void updatePenyedia(int id, String nama, String user, String pass){
         Database db = new Database();
@@ -168,8 +179,13 @@ public class Aplikasi {
         if (jumOrang < 100) {
             if (getPenyedia(id) == null) {
                 if (!(cariUsername(username))) {
-                    daftarOrang.add(new Penyedia(id, nama, username, password));
-                    jumOrang=daftarOrang.size();
+                    if (cekNama(nama)){
+                        daftarOrang.add(new Penyedia(id, nama, username, password));
+                        jumOrang=daftarOrang.size();
+                        System.out.println("Data berhasil disimpan");
+                    } else {
+                        System.out.println("Nama tidak valid");
+                    }
                 } else {
                     System.out.println("Username sudah digunakan");
                 }
@@ -183,8 +199,13 @@ public class Aplikasi {
         if (jumOrang < 100) {
             if (getPetugas(id) == null) {
                 if (!(cariUsername(username))) {
-                    daftarOrang.add(new Petugas(id, nama, username, password));
-                    jumOrang = daftarOrang.size();
+                    if (cekNama(nama)){
+                        daftarOrang.add(new Petugas(id, nama, username, password));
+                        jumOrang = daftarOrang.size();
+                        System.out.println("Data berhasil disimpan");
+                    } else {
+                        System.out.println("Nama tidak valid");
+                    }
                 } else {
                     System.out.println("Username sudah digunakan");
                 }
@@ -352,12 +373,20 @@ public class Aplikasi {
             }
         }
     }
+    
+    
+    
+    public int findUsername(String user){
+        for (Orang p : daftarOrang){
+            if (p.getUsername().equals(user))
+                return daftarOrang.indexOf(p);
+        }
+        return -1;
+    }
 
     public void addGudang(int id) {
-        if (jumGudang < 10) {
-            daftarGudang.add(new Gudang(id));
-            jumGudang = daftarGudang.size();
-        }
+        daftarGudang.add(new Gudang(id));
+        jumGudang = daftarGudang.size();
     }
     
     public void tambahGudang(int id, String nama) {
