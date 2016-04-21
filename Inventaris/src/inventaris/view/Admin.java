@@ -73,8 +73,18 @@ public class Admin extends javax.swing.JPanel {
         btnHapusPengguna.setText("HAPUS");
 
         btnEditPengguna.setText("EDIT");
+        btnEditPengguna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPenggunaActionPerformed(evt);
+            }
+        });
 
         btnSimpanPengguna.setText("SIMPAN");
+        btnSimpanPengguna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanPenggunaActionPerformed(evt);
+            }
+        });
 
         cbPosisiKelola.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penyedia", "Petugas" }));
 
@@ -309,6 +319,16 @@ public class Admin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEditPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPenggunaActionPerformed
+        // TODO add your handling code here:
+        btnHapusPengguna.setEnabled(false);
+    }//GEN-LAST:event_btnEditPenggunaActionPerformed
+
+    private void btnSimpanPenggunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanPenggunaActionPerformed
+        // TODO add your handling code here:
+        btnHapusPengguna.setEnabled(true);
+    }//GEN-LAST:event_btnSimpanPenggunaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditPengguna;
@@ -352,55 +372,55 @@ public class Admin extends javax.swing.JPanel {
     public int getIDPenggunaKelola() {
         return (Integer) spinIDPenggunaKelola.getValue();
     }
-
+    
     public String getNamaAsliKelola() {
         return txtNamaAsliKelola.getText();
     }
-
+    
     public String getUsernameKelola() {
         return txtUsernameKelola.getText();
     }
-
+    
     public String getPasswordKelola() {
         return txtPasswordKelola.getText();
     }
-
+    
     public String getJenisPengguna() {
         return (String) cbPosisiKelola.getSelectedItem();
     }
-
+    
     public void deactivateID() {
         spinIDPenggunaKelola.setEnabled(false);
     }
-
+    
     public void activateID() {
         spinIDPenggunaKelola.setEnabled(true);
     }
-
+    
     public void deactivateJenis() {
         cbPosisiKelola.setEnabled(false);
     }
-
+    
     public void activateJenis() {
         cbPosisiKelola.setEnabled(true);
     }
-
+    
     public boolean getIDStatus() {
         return spinIDPenggunaKelola.isEnabled();
     }
-
+    
     public Object simpanButtonPressed() {
         return btnSimpanPengguna;
     }
-
+    
     public Object editButtonPressed() {
         return btnEditPengguna;
     }
-
+    
     public Object deleteButtonPressed() {
         return btnHapusPengguna;
     }
-
+    
     public void setListOrang(ArrayList<Orang> list) {
         String[] judul = {"ID", "Nama", "Username", "Password", "Jenis User"};
         String[][] isi = new String[list.size()][5];
@@ -423,15 +443,15 @@ public class Admin extends javax.swing.JPanel {
         tabelPengguna.setModel(tableModel);
         tabelPengguna.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-
+    
     public int getSelectedOrang() {
         return tabelPengguna.getSelectedRow();
     }
-
+    
     public Object tabelOrangSelected() {
         return tabelPengguna;
     }
-
+    
     public void refresh() {
         spinIDPenggunaKelola.setValue(0);
         txtNamaAsliKelola.setText("");
@@ -439,7 +459,7 @@ public class Admin extends javax.swing.JPanel {
         txtPasswordKelola.setText("");
         cbPosisiKelola.setSelectedIndex(0);
     }
-
+    
     public void refreshEdit(Orang b) {
         if (b instanceof inventaris.Penyedia) {
             spinIDPenggunaKelola.setValue(((inventaris.Penyedia) b).getID());
@@ -461,35 +481,35 @@ public class Admin extends javax.swing.JPanel {
     public int getIDGudang() {
         return (Integer) spinIDGudangKelola.getValue();
     }
-
+    
     public String getNamaGudangKelola() {
         return txtNamaGudang.getText();
     }
-
+    
     public void deactivateIDGudang() {
         spinIDGudangKelola.setEnabled(false);
     }
-
+    
     public void activateIDGudang() {
         spinIDGudangKelola.setEnabled(true);
     }
-
+    
     public boolean getIDGudangStatus() {
         return spinIDGudangKelola.isEnabled();
     }
-
+    
     public Object simpanBtnPressed() {
         return simpanGudangButton;
     }
-
+    
     public Object editBtnPressed() {
         return editGudangButton;
     }
-
+    
     public Object deleteBtnPressed() {
         return hapusButtonGudang;
     }
-
+    
     public void setListGudang(ArrayList<Gudang> list) {
         String[] judul = {"ID", "Nama"};
         String[][] isi = new String[list.size()][2];
@@ -501,20 +521,20 @@ public class Admin extends javax.swing.JPanel {
         tabelGudang.setModel(tableModel);
         tabelGudang.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-
+    
     public int getSelectedGudang() {
         return tabelGudang.getSelectedRow();
     }
-
+    
     public Object tabelGudangSelected() {
         return tabelGudang;
     }
-
+    
     public void refreshGudang() {
         spinIDGudangKelola.setValue(0);
         txtNamaGudang.setText("");
     }
-
+    
     public void refreshEditGudang(Gudang b) {
         spinIDGudangKelola.setValue(b.getID());
         txtNamaGudang.setText(b.getNama_gudang());
@@ -530,7 +550,7 @@ public class Admin extends javax.swing.JPanel {
         editGudangButton.addActionListener(e);
         hapusButtonGudang.addActionListener(e);
     }
-
+    
     public void addAdapter(MouseAdapter e) {
         tabelPengguna.addMouseListener(e);
         tabelGudang.addMouseListener(e);
