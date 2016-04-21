@@ -199,6 +199,10 @@ public class Penyedia extends javax.swing.JPanel {
         return btnHapus;
     }
     
+    public void setLabelPetugas(String s){
+        lblNama.setText(s);
+    }
+    
     public void setListBarang(ArrayList<Barang> list){
         String[] judul = {"ID Barang","Nama Barang","Jumlah"};
         String[][] isi = new String[list.size()][3];

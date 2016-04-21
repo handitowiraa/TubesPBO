@@ -118,6 +118,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                 else { 
                     if (model.login(user,pass) instanceof inventaris.Petugas){
                         p2 = (inventaris.Petugas) model.login(user,pass);
+                        pt.setLabelPetugas(p2.getNama());
                         currentView = "2";
                         view.getCardLayout().show(mainPanel, currentView);
                         view.showLogOutButton();
@@ -131,6 +132,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                         pt.setListViewNull();
                     } else if (model.login(user,pass) instanceof inventaris.Penyedia){
                         p1 = (inventaris.Penyedia) model.login(user,pass);
+                        py.setLabelPetugas(p1.getNama());
                         currentView = "1";
                         view.getCardLayout().show(mainPanel, currentView);
                         view.showLogOutButton();

@@ -37,20 +37,6 @@ public class Penyedia extends Orang {
         return daftarBarang.get(n);
     }
     
-    public String[] getListDataBarang(){
-        String[] s = new String[daftarBarang.size()];
-        int j = 0;
-        for (Barang i : daftarBarang){
-            s[j] = "ID."+String.valueOf(i.getID())+" "+i.getNama();
-            j++;
-        }
-        return s;
-    }
-    
-    public ArrayList<Barang> getListBarang() {
-        return daftarBarang;
-    }
-
     public void createBarang(int id, String nama, int jumlah) {
         daftarBarang.add(new Barang(id, nama, jumlah));
         setJumBarang(daftarBarang.size());
@@ -102,5 +88,19 @@ public class Penyedia extends Orang {
      */
     public void setJumBarang(int jumBarang) {
         this.jumBarang = jumBarang;
+    }
+    
+    public String[] getListDataBarang(){
+        String[] s = new String[daftarBarang.size()];
+        int j = 0;
+        for (Barang i : daftarBarang){
+            s[j] = "ID."+String.valueOf(i.getID())+" "+i.getNama();
+            j++;
+        }
+        return s;
+    }
+    
+    public ArrayList<Barang> getListBarang() {
+        return daftarBarang;
     }
 }

@@ -39,7 +39,7 @@ public class Petugas extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnMasukTambah = new javax.swing.JButton();
         btnMasukHapus = new javax.swing.JButton();
-        lblMasukNama = new javax.swing.JLabel();
+        labelPetugas1 = new javax.swing.JLabel();
         btnCariMasuk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cmbMasukPenyedia = new javax.swing.JComboBox<>();
@@ -52,7 +52,7 @@ public class Petugas extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         cbMasukIdGudang = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        lblKelolaNama = new javax.swing.JLabel();
+        labelPetugas2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbKelolaPenyedia = new javax.swing.JTable();
         btnKelolaEdit = new javax.swing.JButton();
@@ -75,7 +75,7 @@ public class Petugas extends javax.swing.JPanel {
         btnCariCari = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbCariHasil = new javax.swing.JTable();
-        lblCariNama = new javax.swing.JLabel();
+        labelPetugas3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cmbCari = new javax.swing.JComboBox<>();
         cbIdGudangCari = new javax.swing.JComboBox<>();
@@ -91,8 +91,8 @@ public class Petugas extends javax.swing.JPanel {
 
         btnMasukHapus.setText("HAPUS");
 
-        lblMasukNama.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblMasukNama.setText("Petugas");
+        labelPetugas1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        labelPetugas1.setText("Petugas");
 
         btnCariMasuk.setText("CARI");
 
@@ -131,7 +131,7 @@ public class Petugas extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(lblMasukNama))
+                            .addComponent(labelPetugas1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -156,7 +156,7 @@ public class Petugas extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblMasukNama)
+                .addComponent(labelPetugas1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -185,8 +185,8 @@ public class Petugas extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Masukkan Barang", jPanel1);
 
-        lblKelolaNama.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblKelolaNama.setText("Petugas");
+        labelPetugas2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        labelPetugas2.setText("Petugas");
 
         tbKelolaPenyedia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -288,7 +288,7 @@ public class Petugas extends javax.swing.JPanel {
                         .addComponent(btnKelolaHapus))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(lblKelolaNama)
+                            .addComponent(labelPetugas2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -306,7 +306,7 @@ public class Petugas extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(lblKelolaNama)))
+                        .addComponent(labelPetugas2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -338,8 +338,8 @@ public class Petugas extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(tbCariHasil);
 
-        lblCariNama.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblCariNama.setText("Petugas");
+        labelPetugas3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        labelPetugas3.setText("Petugas");
 
         jLabel7.setText("Cari Berdasarkan");
 
@@ -356,7 +356,7 @@ public class Petugas extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblCariNama)
+                            .addComponent(labelPetugas3)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -377,7 +377,7 @@ public class Petugas extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCariNama)
+                .addComponent(labelPetugas3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -510,9 +510,9 @@ public class Petugas extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lblCariNama;
-    private javax.swing.JLabel lblKelolaNama;
-    private javax.swing.JLabel lblMasukNama;
+    private javax.swing.JLabel labelPetugas1;
+    private javax.swing.JLabel labelPetugas2;
+    private javax.swing.JLabel labelPetugas3;
     private javax.swing.JList<String> listMasukBarangPenyedia;
     private javax.swing.JList<String> listMasukBarangTambah;
     private javax.swing.JSpinner spinKelolaIdBarang;
@@ -821,6 +821,12 @@ public class Petugas extends javax.swing.JPanel {
     //                              END OF VIEW BARANG METHODS
     
     //                                       FOR ALL
+    
+    public void setLabelPetugas(String s){
+        labelPetugas1.setText(s);
+        labelPetugas2.setText(s);
+        labelPetugas3.setText(s);
+    }
     
     public void addListener(ActionListener e){
         btnCariMasuk.addActionListener(e);
