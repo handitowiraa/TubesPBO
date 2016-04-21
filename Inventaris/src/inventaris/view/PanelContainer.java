@@ -22,6 +22,7 @@ public class PanelContainer extends javax.swing.JFrame {
         initComponents();
         cardLayout = new CardLayout();
         mainPanel.setLayout(cardLayout);
+        
     }
 
     public JPanel getMainPanel() {
@@ -67,6 +68,7 @@ public class PanelContainer extends javax.swing.JFrame {
         logOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         mainPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -108,10 +110,11 @@ public class PanelContainer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeButton)
                     .addComponent(logOutButton))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
