@@ -7,7 +7,7 @@ package inventaris;
 
 /**
  *
- * @author Handito
+ * @author Kelompok 8
  */
 public class Petugas extends Orang {
 
@@ -32,8 +32,8 @@ public class Petugas extends Orang {
         this.idPetugas = idPetugas;
     }
 
-    public void tambahBarang(Gudang g, Barang b,int id2) {
-        g.addBarang(b,id2);
+    public void tambahBarang(Gudang g, Barang b, int id2) {
+        g.addBarang(b, id2);
     }
 
     public void ubahBarang(Gudang g, int n, int baik) {

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Admin extends javax.swing.JPanel {
 
@@ -347,91 +347,91 @@ public class Admin extends javax.swing.JPanel {
     private javax.swing.JTextField txtPasswordKelola;
     private javax.swing.JTextField txtUsernameKelola;
     // End of variables declaration//GEN-END:variables
-    
+
     //==================================================KELOLA PENGGUNA==============================================//
-    public int getIDPenggunaKelola(){
+    public int getIDPenggunaKelola() {
         return (Integer) spinIDPenggunaKelola.getValue();
     }
-    
-    public String getNamaAsliKelola(){
+
+    public String getNamaAsliKelola() {
         return txtNamaAsliKelola.getText();
     }
-    
-    public String getUsernameKelola(){
+
+    public String getUsernameKelola() {
         return txtUsernameKelola.getText();
     }
-    
-    public String getPasswordKelola(){
+
+    public String getPasswordKelola() {
         return txtPasswordKelola.getText();
     }
-    
-    public String getJenisPengguna(){
+
+    public String getJenisPengguna() {
         return (String) cbPosisiKelola.getSelectedItem();
     }
-    
-    public void deactivateID(){
+
+    public void deactivateID() {
         spinIDPenggunaKelola.setEnabled(false);
     }
-    
-    public void activateID(){
+
+    public void activateID() {
         spinIDPenggunaKelola.setEnabled(true);
     }
-    
-    public void deactivateJenis(){
+
+    public void deactivateJenis() {
         cbPosisiKelola.setEnabled(false);
     }
-    
-    public void activateJenis(){
+
+    public void activateJenis() {
         cbPosisiKelola.setEnabled(true);
     }
-    
-    public boolean getIDStatus(){
+
+    public boolean getIDStatus() {
         return spinIDPenggunaKelola.isEnabled();
     }
-    
-    public Object simpanButtonPressed(){
+
+    public Object simpanButtonPressed() {
         return btnSimpanPengguna;
     }
-    
-    public Object editButtonPressed(){
+
+    public Object editButtonPressed() {
         return btnEditPengguna;
     }
-    
-    public Object deleteButtonPressed(){
+
+    public Object deleteButtonPressed() {
         return btnHapusPengguna;
     }
 
-    public void setListOrang(ArrayList<Orang> list){
-        String[] judul = {"ID","Nama","Username","Password","Jenis User"};
+    public void setListOrang(ArrayList<Orang> list) {
+        String[] judul = {"ID", "Nama", "Username", "Password", "Jenis User"};
         String[][] isi = new String[list.size()][5];
-        for (int i = 0; i < list.size(); i++){
-            if (list.get(i) instanceof inventaris.Penyedia){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) instanceof inventaris.Penyedia) {
                 isi[i][0] = String.valueOf(((inventaris.Penyedia) list.get(i)).getID());
-            } else if (list.get(i) instanceof inventaris.Petugas){
+            } else if (list.get(i) instanceof inventaris.Petugas) {
                 isi[i][0] = String.valueOf(((inventaris.Petugas) list.get(i)).getIdPetugas());
             }
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = list.get(i).getUsername();
             isi[i][3] = list.get(i).getPassword();
-            if (list.get(i) instanceof inventaris.Penyedia){
+            if (list.get(i) instanceof inventaris.Penyedia) {
                 isi[i][4] = "Penyedia";
-            } else if (list.get(i) instanceof inventaris.Petugas){
+            } else if (list.get(i) instanceof inventaris.Petugas) {
                 isi[i][4] = "Petugas";
             }
         }
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tabelPengguna.setModel(tableModel);
         tabelPengguna.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public int getSelectedOrang(){
+
+    public int getSelectedOrang() {
         return tabelPengguna.getSelectedRow();
     }
-    
-    public Object tabelOrangSelected(){
+
+    public Object tabelOrangSelected() {
         return tabelPengguna;
     }
-    
+
     public void refresh() {
         spinIDPenggunaKelola.setValue(0);
         txtNamaAsliKelola.setText("");
@@ -439,93 +439,89 @@ public class Admin extends javax.swing.JPanel {
         txtPasswordKelola.setText("");
         cbPosisiKelola.setSelectedIndex(0);
     }
-    
+
     public void refreshEdit(Orang b) {
-        if (b instanceof inventaris.Penyedia){
+        if (b instanceof inventaris.Penyedia) {
             spinIDPenggunaKelola.setValue(((inventaris.Penyedia) b).getID());
-        } else if (b instanceof inventaris.Petugas){
+        } else if (b instanceof inventaris.Petugas) {
             spinIDPenggunaKelola.setValue(((inventaris.Petugas) b).getIdPetugas());
         }
         txtNamaAsliKelola.setText(b.getNama());
         txtUsernameKelola.setText(b.getUsername());
         txtPasswordKelola.setText(b.getPassword());
-        if (b instanceof inventaris.Penyedia){
+        if (b instanceof inventaris.Penyedia) {
             cbPosisiKelola.setSelectedIndex(0);
-        } else if (b instanceof inventaris.Petugas){
+        } else if (b instanceof inventaris.Petugas) {
             cbPosisiKelola.setSelectedIndex(1);
         }
     }
-    
+
     //=============================================END OF KELOLA PENGGUNA==========================================//
-    
     //==================================================KELOLA GUDANG==============================================//
-    
-    public int getIDGudang(){
+    public int getIDGudang() {
         return (Integer) spinIDGudangKelola.getValue();
     }
-    
-    public String getNamaGudangKelola(){
+
+    public String getNamaGudangKelola() {
         return txtNamaGudang.getText();
     }
-    
-    public void deactivateIDGudang(){
+
+    public void deactivateIDGudang() {
         spinIDGudangKelola.setEnabled(false);
     }
-    
-    public void activateIDGudang(){
+
+    public void activateIDGudang() {
         spinIDGudangKelola.setEnabled(true);
     }
-    
-    public boolean getIDGudangStatus(){
+
+    public boolean getIDGudangStatus() {
         return spinIDGudangKelola.isEnabled();
     }
-    
-    public Object simpanBtnPressed(){
+
+    public Object simpanBtnPressed() {
         return simpanGudangButton;
     }
-    
-    public Object editBtnPressed(){
+
+    public Object editBtnPressed() {
         return editGudangButton;
     }
-    
-    public Object deleteBtnPressed(){
+
+    public Object deleteBtnPressed() {
         return hapusButtonGudang;
     }
-    
-    public void setListGudang(ArrayList<Gudang> list){
-        String[] judul = {"ID","Nama"};
+
+    public void setListGudang(ArrayList<Gudang> list) {
+        String[] judul = {"ID", "Nama"};
         String[][] isi = new String[list.size()][2];
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             isi[i][0] = String.valueOf(((Gudang) list.get(i)).getID());
             isi[i][1] = list.get(i).getNama_gudang();
-            }
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        }
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tabelGudang.setModel(tableModel);
         tabelGudang.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public int getSelectedGudang(){
+
+    public int getSelectedGudang() {
         return tabelGudang.getSelectedRow();
     }
-    
-    public Object tabelGudangSelected(){
+
+    public Object tabelGudangSelected() {
         return tabelGudang;
     }
-    
+
     public void refreshGudang() {
         spinIDGudangKelola.setValue(0);
         txtNamaGudang.setText("");
     }
-    
+
     public void refreshEditGudang(Gudang b) {
         spinIDGudangKelola.setValue(b.getID());
         txtNamaGudang.setText(b.getNama_gudang());
     }
-    
+
     //=============================================END OF KELOLA GUDANG============================================//
-    
     //====================================================FOR ALL==================================================//
-    
     public void addListener(ActionListener e) {
         btnSimpanPengguna.addActionListener(e);
         btnEditPengguna.addActionListener(e);
@@ -534,11 +530,11 @@ public class Admin extends javax.swing.JPanel {
         editGudangButton.addActionListener(e);
         hapusButtonGudang.addActionListener(e);
     }
-    
-    public void addAdapter(MouseAdapter e){
+
+    public void addAdapter(MouseAdapter e) {
         tabelPengguna.addMouseListener(e);
         tabelGudang.addMouseListener(e);
     }
-    
+
     //==================================================END OF FOR ALL=============================================//
 }

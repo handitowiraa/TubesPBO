@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class PanelContainer extends javax.swing.JFrame {
 
@@ -22,7 +22,7 @@ public class PanelContainer extends javax.swing.JFrame {
         initComponents();
         cardLayout = new CardLayout();
         mainPanel.setLayout(cardLayout);
-        
+
     }
 
     public JPanel getMainPanel() {
@@ -36,7 +36,7 @@ public class PanelContainer extends javax.swing.JFrame {
     public Object closeButtonPressed() {
         return closeButton;
     }
-    
+
     public Object logOutButtonPressed() {
         return logOutButton;
     }
@@ -46,11 +46,11 @@ public class PanelContainer extends javax.swing.JFrame {
         logOutButton.addActionListener(e);
     }
 
-    public void hideLogOutButton(){
+    public void hideLogOutButton() {
         logOutButton.setEnabled(false);
     }
-    
-    public void showLogOutButton(){
+
+    public void showLogOutButton() {
         logOutButton.setEnabled(true);
     }
 

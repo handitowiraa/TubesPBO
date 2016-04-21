@@ -14,9 +14,10 @@ import java.util.Scanner;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Console {
+
     private Aplikasi model;
     private Scanner sInt;
     private Scanner sStr;
@@ -26,7 +27,7 @@ public class Console {
         sInt = new Scanner(System.in);
         sStr = new Scanner(System.in);
     }
-    
+
     public int inputInteger() {
         try {
             return sInt.nextInt();
@@ -36,7 +37,7 @@ public class Console {
             sInt = new Scanner(System.in);
         }
     }
-    
+
     public void menuPetugas(Petugas pt) {
         int pil = 0;
         while (pil != 5) {
@@ -55,7 +56,7 @@ public class Console {
                         System.out.print("\nID Penyedia\t: ");
                         int id = inputInteger();
                         Penyedia py = model.getPenyedia(id);
-                        if (py != null){
+                        if (py != null) {
                             String lagi = "y";
                             do {
                                 System.out.println("\nDaftar Barang");
@@ -71,14 +72,16 @@ public class Console {
                                     System.out.print("ID Barang Baru\t: ");
                                     int id2 = inputInteger();
                                     Gudang g = model.getGudang(idGudang);
-                                    model.menuPtTambahBrg(pt, py, g, id,id2);
-                                } else
+                                    model.menuPtTambahBrg(pt, py, g, id, id2);
+                                } else {
                                     System.out.println("Gudang tidak ada");
+                                }
                                 System.out.print("Lagi? [Y/N] ");
                                 lagi = sStr.nextLine();
                             } while (lagi.equalsIgnoreCase("y"));
-                        } else 
+                        } else {
                             System.out.println("Penyedia tidak ada");
+                        }
                         break;
                     }
                     case 2: {
@@ -88,12 +91,13 @@ public class Console {
                         if (g != null) {
                             System.out.print("ID barang diubah\t: ");
                             int id = inputInteger();
-                            if (g.findBarang(id)!=-1){
+                            if (g.findBarang(id) != -1) {
                                 System.out.print("Barang Baik\t\t: ");
                                 int k = inputInteger();
                                 model.menuPtEditBrg(pt, g, id, k);
-                            } else
+                            } else {
                                 System.out.println("Barang tidak ada");
+                            }
                         } else {
                             System.out.println("Gudang tidak ada");
                         }
@@ -106,10 +110,11 @@ public class Console {
                         if (g != null) {
                             System.out.print("ID barang dihapus\t: ");
                             int id = inputInteger();
-                            if (g.findBarang(id)!=-1)
+                            if (g.findBarang(id) != -1) {
                                 model.menuPtDeleteBrg(pt, g, id);
-                            else
+                            } else {
                                 System.out.println("Barang tidak ada");
+                            }
                         } else {
                             System.out.println("Gudang tidak ada");
                         }
@@ -130,7 +135,7 @@ public class Console {
             }
         }
     }
-    
+
     public void menuPenyedia(Penyedia py) {
         int pil = 0;
         while (pil != 5) {
@@ -176,7 +181,7 @@ public class Console {
             }
         }
     }
-    
+
     public void menuAdmin() {
         int pil2 = 0;
         String coba = "N";
@@ -196,20 +201,22 @@ public class Console {
                         String user = sStr.nextLine();
                         System.out.print("Password\t: ");
                         String pass = sStr.nextLine();
-                        if(model.getPetugas(id)==null){
-                            if(model.getUserPenyedia(user)==null&&model.getUserPetugas(user)==null){
+                        if (model.getPetugas(id) == null) {
+                            if (model.getUserPenyedia(user) == null && model.getUserPetugas(user) == null) {
                                 model.addPetugas(id, nama, user, pass);
                                 //savePetugas(id,nama,user,pass);
-                            }
-                            else
+                            } else {
                                 System.out.println("Username sudah ada");
-                        } else System.out.println("ID sudah digunakan");
+                            }
+                        } else {
+                            System.out.println("ID sudah digunakan");
+                        }
                         break;
                     }
                     case 2: {
                         System.out.print("ID Petugas dihapus\t: ");
                         int id = inputInteger();
-                        if(model.getPetugas(id)==null){
+                        if (model.getPetugas(id) == null) {
                             System.out.println("Data tidak ada");
                         } else {
                             model.deletePetugas(id);
@@ -227,20 +234,22 @@ public class Console {
                         String user = sStr.nextLine();
                         System.out.print("Password\t: ");
                         String pass = sStr.nextLine();
-                        if(model.getPenyedia(id)==null){
-                            if(model.getUserPenyedia(user)==null&&model.getUserPetugas(user)==null){
+                        if (model.getPenyedia(id) == null) {
+                            if (model.getUserPenyedia(user) == null && model.getUserPetugas(user) == null) {
                                 model.addPenyedia(id, nama, user, pass);
                                 //savePenyedia(id,nama,user,pass);
-                            }
-                            else
+                            } else {
                                 System.out.println("Username sudah ada");
-                        } else System.out.println("ID sudah digunakan");
+                            }
+                        } else {
+                            System.out.println("ID sudah digunakan");
+                        }
                         break;
                     }
                     case 4: {
                         System.out.print("ID Penyedia dihapus\t: ");
                         int id = inputInteger();
-                        if(model.getPenyedia(id)==null){
+                        if (model.getPenyedia(id) == null) {
                             System.out.println("Data tidak ada");
                         } else {
                             model.deletePenyedia(id);
@@ -252,9 +261,9 @@ public class Console {
                     case 5: {
                         System.out.print("ID Gudang\t: ");
                         int id = inputInteger();
-                        if (model.getGudang(id)!=null)
+                        if (model.getGudang(id) != null) {
                             System.out.println("ID sudah digunakan");
-                        else {
+                        } else {
                             model.addGudang(id);
                             //saveGudang(id);
                         }
@@ -263,7 +272,7 @@ public class Console {
                     case 6: {
                         System.out.print("ID Gudang dihapus\t: ");
                         int id = inputInteger();
-                        if(model.getGudang(id)==null){
+                        if (model.getGudang(id) == null) {
                             System.out.println("Data tidak ada");
                         } else {
                             model.deleteGudang(id);
@@ -273,7 +282,7 @@ public class Console {
                         break;
                     }
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error : " + e.getMessage());
             } finally {
                 sInt = new Scanner(System.in);
@@ -281,7 +290,7 @@ public class Console {
             }
         }
     }
-    
+
     public void menuUtama() {
         int pil = 0;
         //readAllOrang();
@@ -298,19 +307,21 @@ public class Console {
                         user = sStr.nextLine();
                         System.out.print("Password : ");
                         pass = sStr.nextLine();
-                        if (user.equals("admin")&&(pass.equals("admin")))
+                        if (user.equals("admin") && (pass.equals("admin"))) {
                             menuAdmin();
-                        else
-                            if(model.login(user,pass) instanceof Petugas)
-                                menuPetugas((Petugas) model.login(user,pass));
-                            else if(model.login(user,pass) instanceof Penyedia)
-                                menuPenyedia((Penyedia) model.login(user,pass));
-                            else if(model.login(user,pass) == null)
+                        } else {
+                            if (model.login(user, pass) instanceof Petugas) {
+                                menuPetugas((Petugas) model.login(user, pass));
+                            } else if (model.login(user, pass) instanceof Penyedia) {
+                                menuPenyedia((Penyedia) model.login(user, pass));
+                            } else if (model.login(user, pass) == null) {
                                 System.out.println("Login gagal");
+                            }
+                        }
                         break;
                     }
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("Error : " + e.getMessage());
             } finally {
                 sInt = new Scanner(System.in);

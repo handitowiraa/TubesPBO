@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Login extends javax.swing.JPanel {
 
@@ -139,23 +139,23 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 
-    public String getUsername(){
+    public String getUsername() {
         return usernameTextField.getText();
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return passwordField.getText();
     }
 
-    public Object masukButtonPressed(){
+    public Object masukButtonPressed() {
         return masukButton;
     }
-    
+
     public void refresh() {
         usernameTextField.setText("");
         passwordField.setText("");
     }
-    
+
     public void addListener(ActionListener e) {
         masukButton.addActionListener(e);
     }

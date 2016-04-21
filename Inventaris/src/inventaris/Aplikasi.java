@@ -7,16 +7,10 @@ package inventaris;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 import database.Database;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Aplikasi {
 
@@ -25,7 +19,7 @@ public class Aplikasi {
     int jumOrang = 0;
     int jumGudang = 0;
     private Database db;
-    private String[] angka = {"1","2","3","4","5","6","7","8","9","0"};
+    private String[] angka = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 
     public Aplikasi() {
         db = new Database();
@@ -36,24 +30,25 @@ public class Aplikasi {
         jumOrang = daftarOrang.size();
         jumGudang = daftarGudang.size();
     }
-    
-    public boolean cekNama(String name){
+
+    public boolean cekNama(String name) {
         boolean benar = true;
-        for (String a : angka){
-            if (name.contains(a))
-                    benar = false;
+        for (String a : angka) {
+            if (name.contains(a)) {
+                benar = false;
+            }
         }
         return benar;
     }
-    
+
     public void addPenyedia(int id, String nama, String username, String password) {
         if (jumOrang < 100) {
             if (getPenyedia(id) == null) {
                 if (!(cariUsername(username))) {
-                    if (cekNama(nama)){
+                    if (cekNama(nama)) {
                         daftarOrang.add(new Penyedia(id, nama, username, password));
                         db.savePenyedia(id, nama, username, password);
-                        jumOrang=daftarOrang.size();
+                        jumOrang = daftarOrang.size();
                         System.out.println("Data berhasil disimpan");
                     } else {
                         System.out.println("Nama tidak valid");
@@ -66,12 +61,12 @@ public class Aplikasi {
             }
         }
     }
-    
+
     public void addPetugas(int id, String nama, String username, String password) {
         if (jumOrang < 100) {
             if (getPetugas(id) == null) {
                 if (!(cariUsername(username))) {
-                    if (cekNama(nama)){
+                    if (cekNama(nama)) {
                         daftarOrang.add(new Petugas(id, nama, username, password));
                         db.savePetugas(id, nama, username, password);
                         jumOrang = daftarOrang.size();
@@ -87,7 +82,7 @@ public class Aplikasi {
             }
         }
     }
-    
+
     public void ubahPenyedia(int id, String nama, String username, String password) {
         Penyedia p = getPenyedia(id);
         p.setNama(nama);
@@ -95,7 +90,7 @@ public class Aplikasi {
         p.setPassword(password);
         db.updatePenyedia(id, nama, username, password);
     }
-    
+
     public void ubahPetugas(int id, String nama, String username, String password) {
         Petugas p = getPetugas(id);
         p.setNama(nama);
@@ -103,23 +98,23 @@ public class Aplikasi {
         p.setPassword(password);
         db.updatePetugas(id, nama, username, password);
     }
-    
-    public Gudang ambilGudang(int n){
+
+    public Gudang ambilGudang(int n) {
         return daftarGudang.get(n);
     }
-    
-    public ArrayList<Gudang> getListGudang(){
+
+    public ArrayList<Gudang> getListGudang() {
         return daftarGudang;
     }
-    
-    public Orang getOrang(int n){
+
+    public Orang getOrang(int n) {
         return daftarOrang.get(n);
     }
-    
-    public ArrayList<Orang> getListOrang(){
+
+    public ArrayList<Orang> getListOrang() {
         return daftarOrang;
     }
-    
+
     public Petugas getPetugas(int id) {
         for (int i = 0; i < jumOrang; i++) {
             if (daftarOrang.get(i) instanceof Petugas) {
@@ -131,7 +126,7 @@ public class Aplikasi {
         }
         return null;
     }
-    
+
     public Petugas getUserPetugas(String user) {
         for (int i = 0; i < jumOrang; i++) {
             if (daftarOrang.get(i) instanceof Petugas) {
@@ -143,33 +138,33 @@ public class Aplikasi {
         }
         return null;
     }
-    
-    public int hitungPenyedia(){
+
+    public int hitungPenyedia() {
         int jumlah = 0;
-        for (Orang i : daftarOrang){
-            if (i instanceof Penyedia){
+        for (Orang i : daftarOrang) {
+            if (i instanceof Penyedia) {
                 jumlah++;
             }
         }
         return jumlah;
     }
-    
-    public String[] getIDPenyedia(){
+
+    public String[] getIDPenyedia() {
         String[] s = new String[hitungPenyedia()];
         int j = 0;
-        for (Orang i : daftarOrang){
-            if (i instanceof Penyedia){
+        for (Orang i : daftarOrang) {
+            if (i instanceof Penyedia) {
                 s[j] = String.valueOf(((Penyedia) i).getID());
                 j++;
             }
         }
         return s;
     }
-    
-    public String[] getIDGudang(){
+
+    public String[] getIDGudang() {
         String[] s = new String[daftarGudang.size()];
         int j = 0;
-        for (Gudang i : daftarGudang){
+        for (Gudang i : daftarGudang) {
             s[j] = String.valueOf(i.getID());
             j++;
         }
@@ -187,7 +182,7 @@ public class Aplikasi {
         }
         return null;
     }
-    
+
     public Penyedia getUserPenyedia(String user) {
         for (int i = 0; i < jumOrang; i++) {
             if (daftarOrang.get(i) instanceof Penyedia) {
@@ -229,11 +224,12 @@ public class Aplikasi {
             }
         }
     }
-    
-    public int findUsername(String user){
-        for (Orang p : daftarOrang){
-            if (p.getUsername().equals(user))
+
+    public int findUsername(String user) {
+        for (Orang p : daftarOrang) {
+            if (p.getUsername().equals(user)) {
                 return daftarOrang.indexOf(p);
+            }
         }
         return -1;
     }
@@ -242,9 +238,9 @@ public class Aplikasi {
         daftarGudang.add(new Gudang(id));
         jumGudang = daftarGudang.size();
     }
-    
+
     public void tambahGudang(int id, String nama) {
-        daftarGudang.add(new Gudang(id,nama));
+        daftarGudang.add(new Gudang(id, nama));
         db.saveGudang(id, nama);
         jumGudang = daftarGudang.size();
     }
@@ -257,8 +253,8 @@ public class Aplikasi {
         }
         return null;
     }
-    
-    public void ubahGudang(int id, String nama){
+
+    public void ubahGudang(int id, String nama) {
         db.updateGudang(id, nama);
         Gudang g = getGudang(id);
         g.setNama_gudang(nama);
@@ -286,7 +282,7 @@ public class Aplikasi {
     }
 
     public void menuPyTambahBrg(Penyedia py, int id, String nama, int jumlah) {
-        if (py.findBarang(id)==-1){
+        if (py.findBarang(id) == -1) {
             py.createBarang(id, nama, jumlah);
             db.saveBarang(py, id, nama, jumlah);
             System.out.println("Barang berhasil ditambahkan");
@@ -321,21 +317,23 @@ public class Aplikasi {
         py.view();
     }
 
-    public void menuPtInputBrg(Gudang g, Barang b){
+    public void menuPtInputBrg(Gudang g, Barang b) {
         g.addBarang(b, b.getID());
-        db.saveBarang(g,b,b.getID());
+        db.saveBarang(g, b, b.getID());
     }
-    
+
     public void menuPtTambahBrg(Petugas pt, Penyedia py, Gudang g, int id, int id2) {
         if (py.findBarang(id) != -1) {
-            if (g.findBarang(id2) == -1){
+            if (g.findBarang(id2) == -1) {
                 Barang b = py.getBarang(py.findBarang(id));
                 py.hapusBarang(id);
-                menuPyDeleteBrg(py,id);
+                menuPyDeleteBrg(py, id);
                 pt.tambahBarang(g, b, id2);
-                db.saveBarang(g,py.getBarang(py.findBarang(id)),id2);
+                db.saveBarang(g, py.getBarang(py.findBarang(id)), id2);
                 System.out.println("Barang berhasil ditambahkan");
-            } else System.out.println("ID Baru sudah digunakan");
+            } else {
+                System.out.println("ID Baru sudah digunakan");
+            }
         } else {
             System.out.println("Barang tidak ada");
         }
@@ -353,10 +351,10 @@ public class Aplikasi {
     }
 
     public void menuPtDeleteBrg(Petugas pt, Gudang g, int id) {
-        pt.hapusBarang(g,id);
-        db.deleteDBBarang(g,id);
+        pt.hapusBarang(g, id);
+        db.deleteDBBarang(g, id);
     }
-   
+
     public void menuPtViewGudang(int id) {
         Gudang g = getGudang(id);
         if (g != null) {
@@ -366,7 +364,7 @@ public class Aplikasi {
         }
     }
 
-    public Orang login(String user, String pass){
+    public Orang login(String user, String pass) {
         boolean masuk = false;
         int i = 0;
         while (i < jumOrang) {

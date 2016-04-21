@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Penyedia extends Orang {
 
@@ -36,20 +36,21 @@ public class Penyedia extends Orang {
     public Barang getBarang(int n) {
         return daftarBarang.get(n);
     }
-    
+
     public void createBarang(int id, String nama, int jumlah) {
         daftarBarang.add(new Barang(id, nama, jumlah));
         setJumBarang(daftarBarang.size());
     }
 
     public int findBarang(int id) {
-        for(Barang b : daftarBarang){
-            if (b.getID()==id)
+        for (Barang b : daftarBarang) {
+            if (b.getID() == id) {
                 return daftarBarang.indexOf(b);
+            }
         }
         return -1;
     }
-    
+
     public void view() {
         for (int i = 0; i < getJumBarang(); i++) {
             daftarBarang.get(i).view1();
@@ -62,14 +63,18 @@ public class Penyedia extends Orang {
         if (j != -1) {
             daftarBarang.remove(j);
             setJumBarang(daftarBarang.size());
-        } else System.out.println("Data barang tidak ada");
+        } else {
+            System.out.println("Data barang tidak ada");
+        }
     }
 
     public void ubahBarang(int id, int jum) {
         int i = findBarang(id);
         if (i != -1) {
             daftarBarang.get(i).updateJumlah(jum);
-        } else System.out.println("Data barang tidak ada");
+        } else {
+            System.out.println("Data barang tidak ada");
+        }
     }
 
     public String toString() {
@@ -89,17 +94,17 @@ public class Penyedia extends Orang {
     public void setJumBarang(int jumBarang) {
         this.jumBarang = jumBarang;
     }
-    
-    public String[] getListDataBarang(){
+
+    public String[] getListDataBarang() {
         String[] s = new String[daftarBarang.size()];
         int j = 0;
-        for (Barang i : daftarBarang){
-            s[j] = "ID."+String.valueOf(i.getID())+" "+i.getNama();
+        for (Barang i : daftarBarang) {
+            s[j] = "ID." + String.valueOf(i.getID()) + " " + i.getNama();
             j++;
         }
         return s;
     }
-    
+
     public ArrayList<Barang> getListBarang() {
         return daftarBarang;
     }

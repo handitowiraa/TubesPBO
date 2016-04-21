@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Penyedia extends javax.swing.JPanel {
 
@@ -165,94 +165,94 @@ public class Penyedia extends javax.swing.JPanel {
     private javax.swing.JTextField txtNamaBarang;
     // End of variables declaration//GEN-END:variables
 
-    public int getID(){
+    public int getID() {
         return (Integer) spinIDBarang.getValue();
     }
-    
-    public void deactivateID(){
+
+    public void deactivateID() {
         spinIDBarang.setEnabled(false);
     }
-    
-    public void activateID(){
+
+    public void activateID() {
         spinIDBarang.setEnabled(true);
     }
-    
-    public String getNama(){
+
+    public String getNama() {
         return txtNamaBarang.getText();
     }
-    
-    public void deactivateNama(){
+
+    public void deactivateNama() {
         txtNamaBarang.setEnabled(false);
     }
-    
-    public void activateNama(){
+
+    public void activateNama() {
         txtNamaBarang.setEnabled(true);
     }
-    
-    public boolean getStatusNama(){
+
+    public boolean getStatusNama() {
         return txtNamaBarang.isEnabled();
     }
-    
-    public int getJumlah(){
+
+    public int getJumlah() {
         return (Integer) spinJumBarang.getValue();
     }
 
-    public Object simpanButtonPressed(){
+    public Object simpanButtonPressed() {
         return btnSimpan;
     }
-    
-    public Object editButtonPressed(){
+
+    public Object editButtonPressed() {
         return btnEdit;
     }
-    
-    public Object deleteButtonPressed(){
+
+    public Object deleteButtonPressed() {
         return btnHapus;
     }
-    
-    public void setLabelPetugas(String s){
+
+    public void setLabelPetugas(String s) {
         lblNama.setText(s);
     }
-    
-    public void setListBarang(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah"};
+
+    public void setListBarang(ArrayList<Barang> list) {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah"};
         String[][] isi = new String[list.size()][3];
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
         }
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbPenyedia.setModel(tableModel);
         tbPenyedia.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public int getSelectedID(){
+
+    public int getSelectedID() {
         return tbPenyedia.getSelectedRow();
     }
-    
-    public Object tabelPenyediaSelected(){
+
+    public Object tabelPenyediaSelected() {
         return tbPenyedia;
     }
-    
+
     public void refresh() {
         spinIDBarang.setValue(0);
         txtNamaBarang.setText("");
         spinJumBarang.setValue(0);
     }
-    
+
     public void refreshEdit(Barang b) {
         spinIDBarang.setValue(b.getID());
         txtNamaBarang.setText(b.getNama());
         spinJumBarang.setValue(b.getJumlah());
     }
-    
+
     public void addListener(ActionListener e) {
         btnSimpan.addActionListener(e);
         btnEdit.addActionListener(e);
         btnHapus.addActionListener(e);
     }
-    
-    public void addAdapter(MouseAdapter e){
+
+    public void addAdapter(MouseAdapter e) {
         tbPenyedia.addMouseListener(e);
     }
 }

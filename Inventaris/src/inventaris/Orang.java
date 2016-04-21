@@ -7,7 +7,7 @@ package inventaris;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public abstract class Orang {
 

@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Petugas extends javax.swing.JPanel {
 
@@ -585,318 +585,309 @@ public class Petugas extends javax.swing.JPanel {
     private javax.swing.JTextField txtCari;
     private javax.swing.JTextField txtKelolaNamaBarang;
     // End of variables declaration//GEN-END:variables
-    
+
     //=========================================MASUKKAN BARANG METHODS=============================================//
-    
-    public int getMasukPenyedia(){
+    public int getMasukPenyedia() {
         return Integer.parseInt((String) cmbMasukPenyedia.getSelectedItem());
     }
-    
-    public void setComboPenyediaMasuk(String[] id){
-        for (String i : id){
+
+    public void setComboPenyediaMasuk(String[] id) {
+        for (String i : id) {
             cmbMasukPenyedia.addItem(i);
         }
     }
-    
-    public void setComboPenyediaMasukNull(String[] id){
-        for (String i : id){
+
+    public void setComboPenyediaMasukNull(String[] id) {
+        for (String i : id) {
             cmbMasukPenyedia.removeItem(i);
         }
     }
-    
-    public int getMasukIDGudang(){
+
+    public int getMasukIDGudang() {
         return Integer.parseInt((String) cbMasukIdGudang.getSelectedItem());
     }
-    
-    public void setComboGudangMasuk(String[] id){
-        for (String i : id){
+
+    public void setComboGudangMasuk(String[] id) {
+        for (String i : id) {
             cbMasukIdGudang.addItem(i);
         }
     }
-    
-    public void setComboGudangMasukNull(String[] id){
-        for (String i : id){
+
+    public void setComboGudangMasukNull(String[] id) {
+        for (String i : id) {
             cbMasukIdGudang.removeItem(i);
         }
     }
-    
-    public Object getBtnMasukCari(){
+
+    public Object getBtnMasukCari() {
         return btnCariMasuk;
     }
-    
-    public Object getBtnMasukTambah(){
+
+    public Object getBtnMasukTambah() {
         return btnMasukTambah;
     }
-    
-    public Object getBtnMasukHapus(){
+
+    public Object getBtnMasukHapus() {
         return btnMasukHapus;
     }
-    
-    public Object getBtnMasukSimpan(){
+
+    public Object getBtnMasukSimpan() {
         return btnMasukSimpan;
     }
-    
-    public void setListBarangPegawai(String[] listNama){
+
+    public void setListBarangPegawai(String[] listNama) {
         listMasukBarangPenyedia.setListData(listNama);
     }
-    
-    public String[] getEmptyString(){
+
+    public String[] getEmptyString() {
         String[] s = new String[1];
         s[0] = "";
         return s;
     }
-    
-    public void RefreshInput(){
+
+    public void RefreshInput() {
         listMasukBarangPenyedia.setListData(getEmptyString());
         listMasukBarangTambah.setListData(getEmptyString());
     }
-    
-    public void setListBarangGudang(String[] listNama){
+
+    public void setListBarangGudang(String[] listNama) {
         listMasukBarangTambah.setListData(listNama);
     }
-    
+
     public Object getListBarangPenyedia() {
         return listMasukBarangPenyedia;
     }
-    
+
     public Object getListBarangGudang() {
         return listMasukBarangTambah;
     }
-    
-    public int getSelectedNamaBarangPenyedia(){
+
+    public int getSelectedNamaBarangPenyedia() {
         return listMasukBarangPenyedia.getSelectedIndex();
     }
-    
-    public int getSelectedNamaBarangGudang(){
+
+    public int getSelectedNamaBarangGudang() {
         return listMasukBarangTambah.getSelectedIndex();
     }
-        
-    //====================================END OF MASUKKAN BARANG METHODS=============================================//
 
+    //====================================END OF MASUKKAN BARANG METHODS=============================================//
     //========================================KELOLA GUDANG METHODS==================================================//
-    
-    public int getKelolaIDGudang(){
+    public int getKelolaIDGudang() {
         return Integer.parseInt((String) cbIdGudangKelola.getSelectedItem());
     }
-    
-    public void setComboGudangKelola(String[] id){
-        for (String i : id){
+
+    public void setComboGudangKelola(String[] id) {
+        for (String i : id) {
             cbIdGudangKelola.addItem(i);
         }
     }
-    
-    public void setComboGudangKelolaNull(String[] id){
-        for (String i : id){
+
+    public void setComboGudangKelolaNull(String[] id) {
+        for (String i : id) {
             cbIdGudangKelola.removeItem(i);
         }
     }
-    
-    public Object getBtnKelolaCari(){
+
+    public Object getBtnKelolaCari() {
         return btnKelolaCari;
     }
-    
-    public Object getBtnKelolaEdit(){
+
+    public Object getBtnKelolaEdit() {
         return btnKelolaEdit;
     }
-    
-    public Object getBtnKelolaHapus(){
+
+    public Object getBtnKelolaHapus() {
         return btnKelolaHapus;
     }
-    
-    public Object getBtnKelolaSimpan(){
+
+    public Object getBtnKelolaSimpan() {
         return btnKelolaSimpan;
     }
-    
-    public int getIdBarangEdit(){
+
+    public int getIdBarangEdit() {
         return (Integer) spinKelolaIdBarang.getValue();
     }
-    
-    public int getJumlahBarangEdit(){
+
+    public int getJumlahBarangEdit() {
         return (Integer) spinKelolaJumlah.getValue();
     }
-    
-    public String getNamaBarangEdit(){
+
+    public String getNamaBarangEdit() {
         return txtKelolaNamaBarang.getText();
     }
-    
-    public int getBarangBaikEdit(){
+
+    public int getBarangBaikEdit() {
         return (Integer) spinKelolaBaik.getValue();
     }
-    
-    public void refreshKelola(){
+
+    public void refreshKelola() {
         txtKelolaNamaBarang.setText("");
         spinKelolaBaik.setValue(0);
         spinKelolaIdBarang.setValue(0);
         spinKelolaJumlah.setValue(0);
     }
-    
-    public void refreshEditKelola(Barang b){
+
+    public void refreshEditKelola(Barang b) {
         txtKelolaNamaBarang.setText(b.getNama());
         spinKelolaBaik.setValue(b.getKondisiBaik());
         spinKelolaIdBarang.setValue(b.getID());
         spinKelolaJumlah.setValue(b.getJumlah());
     }
-    
-    public void setListKelolaBarang(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+
+    public void setListKelolaBarang(ArrayList<Barang> list) {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah", "Barang Baik", "Barang Tidak Baik"};
         String[][] isi = new String[list.size()][5];
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
             isi[i][3] = String.valueOf(list.get(i).getKondisiBaik());
             isi[i][4] = String.valueOf(list.get(i).getKondisiBuruk());
         }
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbKelolaPenyedia.setModel(tableModel);
         tbKelolaPenyedia.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public void setListKelolaBarangNull(){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+
+    public void setListKelolaBarangNull() {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah", "Barang Baik", "Barang Tidak Baik"};
         String[][] isi = new String[1][5];
         isi[0][0] = "";
         isi[0][1] = "";
         isi[0][2] = "";
         isi[0][3] = "";
         isi[0][4] = "";
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbKelolaPenyedia.setModel(tableModel);
         tbKelolaPenyedia.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public int getSelectedIDKelola(){
+
+    public int getSelectedIDKelola() {
         return tbKelolaPenyedia.getSelectedRow();
     }
-    
-    public Object listKelolaBarangSelected(){
+
+    public Object listKelolaBarangSelected() {
         return tbKelolaPenyedia;
     }
-    
-    //                              END OF KELOLA GUDANG METHODS
-    
-    //                                  CARI BARANG METHODS
 
-    public int getCariIDGudang(){
+    //                              END OF KELOLA GUDANG METHODS
+    //                                  CARI BARANG METHODS
+    public int getCariIDGudang() {
         return Integer.parseInt((String) cbIdGudangCari.getSelectedItem());
     }
-    
-    public void setComboGudangCari(String[] id){
-        for (String i : id){
+
+    public void setComboGudangCari(String[] id) {
+        for (String i : id) {
             cbIdGudangCari.addItem(i);
         }
     }
-    
-    public void setComboGudangCariNull(String[] id){
-        for (String i : id){
+
+    public void setComboGudangCariNull(String[] id) {
+        for (String i : id) {
             cbIdGudangCari.removeItem(i);
         }
     }
-    
-    public Object getBtnCariCari(){
+
+    public Object getBtnCariCari() {
         return btnCariCari;
     }
-    
-    public String getCariKategori(){
+
+    public String getCariKategori() {
         return (String) cmbCari.getSelectedItem();
     }
-    
-    public String getTxtCari(){
+
+    public String getTxtCari() {
         return txtCari.getText();
     }
-    
-    public void setListCariHasil(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+
+    public void setListCariHasil(ArrayList<Barang> list) {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah", "Barang Baik", "Barang Tidak Baik"};
         String[][] isi = new String[list.size()][5];
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
             isi[i][3] = String.valueOf(list.get(i).getKondisiBaik());
             isi[i][4] = String.valueOf(list.get(i).getKondisiBuruk());
         }
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbCariHasil.setModel(tableModel);
         tbCariHasil.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public void setListCariHasilNull(){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+
+    public void setListCariHasilNull() {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah", "Barang Baik", "Barang Tidak Baik"};
         String[][] isi = new String[1][5];
         isi[0][0] = "";
         isi[0][1] = "";
         isi[0][2] = "";
         isi[0][3] = "";
         isi[0][4] = "";
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbCariHasil.setModel(tableModel);
         tbCariHasil.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
+
     //                              END OF CARI BARANG METHODS
-    
     //                                  VIEW BARANG METHODS
-    
-    public int getViewIDGudang(){
+    public int getViewIDGudang() {
         return Integer.parseInt((String) cbIdGudangView.getSelectedItem());
     }
-    
-    public void setComboGudangView(String[] id){
-        for (String i : id){
+
+    public void setComboGudangView(String[] id) {
+        for (String i : id) {
             cbIdGudangView.addItem(i);
         }
     }
-    
-    public void setComboGudangViewNull(String[] id){
-        for (String i : id){
+
+    public void setComboGudangViewNull(String[] id) {
+        for (String i : id) {
             cbIdGudangView.removeItem(i);
         }
     }
-    
-    public Object getBtnCariView(){
+
+    public Object getBtnCariView() {
         return btnCariView;
     }
-    
-    public void setListView(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+
+    public void setListView(ArrayList<Barang> list) {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah", "Barang Baik", "Barang Tidak Baik"};
         String[][] isi = new String[list.size()][5];
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
             isi[i][3] = String.valueOf(list.get(i).getKondisiBaik());
             isi[i][4] = String.valueOf(list.get(i).getKondisiBuruk());
         }
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbViewDataBarang.setModel(tableModel);
         tbViewDataBarang.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
-    public void setListViewNull(){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+
+    public void setListViewNull() {
+        String[] judul = {"ID Barang", "Nama Barang", "Jumlah", "Barang Baik", "Barang Tidak Baik"};
         String[][] isi = new String[1][5];
         isi[0][0] = "";
         isi[0][1] = "";
         isi[0][2] = "";
         isi[0][3] = "";
         isi[0][4] = "";
-        DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
+        DefaultTableModel tableModel = new DefaultTableModel(isi, judul);
         tbViewDataBarang.setModel(tableModel);
         tbViewDataBarang.getColumnModel().getColumn(0).setPreferredWidth(20);
     }
-    
+
     //                              END OF VIEW BARANG METHODS
-    
     //                                       FOR ALL
-    
-    public void setLabelPetugas(String s){
+    public void setLabelPetugas(String s) {
         labelPetugas1.setText(s);
         labelPetugas2.setText(s);
         labelPetugas3.setText(s);
         labelPetugas4.setText(s);
     }
-    
-    public void addListener(ActionListener e){
+
+    public void addListener(ActionListener e) {
         btnCariMasuk.addActionListener(e);
         btnMasukTambah.addActionListener(e);
         btnMasukHapus.addActionListener(e);
@@ -908,12 +899,12 @@ public class Petugas extends javax.swing.JPanel {
         btnCariCari.addActionListener(e);
         btnCariView.addActionListener(e);
     }
-    
-    public void addAdapter(MouseAdapter e){
+
+    public void addAdapter(MouseAdapter e) {
         listMasukBarangPenyedia.addMouseListener(e);
         listMasukBarangTambah.addMouseListener(e);
         tbKelolaPenyedia.addMouseListener(e);
     }
-    
+
     //                                    END OF FOR ALL
 }

@@ -7,7 +7,7 @@ package inventaris;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Barang {
 
@@ -30,11 +30,11 @@ public class Barang {
     public void setID(int id) {
         idBarang = id;
     }
-    
+
     public void setIDLama(int id) {
         idLama = id;
     }
-    
+
     public int getIDLama() {
         return idLama;
     }
@@ -42,7 +42,7 @@ public class Barang {
     public void setKondisiBaik(int baik) {
         kondisiBaik = baik;
     }
-    
+
     public void setKondisiBuruk() {
         kondisiBuruk = jumlah - kondisiBaik;
     }
@@ -62,7 +62,7 @@ public class Barang {
     public int getKondisiBaik() {
         return kondisiBaik;
     }
-    
+
     public int getKondisiBuruk() {
         return kondisiBuruk;
     }
@@ -89,9 +89,9 @@ public class Barang {
         this.kondisiBaik = baik;
         kondisiBuruk = jumlah - kondisiBaik;
     }
-    
-    public String outString(){
-        return "ID."+idBarang+" "+namaBarang;
+
+    public String outString() {
+        return "ID." + idBarang + " " + namaBarang;
     }
-    
+
 }

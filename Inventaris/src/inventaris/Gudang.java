@@ -5,13 +5,11 @@
  */
 package inventaris;
 
-import database.Database;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
- * @author Handito
+ * @author Kelompok 8
  */
 public class Gudang {
 
@@ -24,7 +22,7 @@ public class Gudang {
         id_gudang = id;
         this.daftarBarang = new ArrayList<>();
     }
-    
+
     public Gudang(int id, String nama) {
         id_gudang = id;
         nama_gudang = nama;
@@ -39,13 +37,13 @@ public class Gudang {
         return id_gudang;
     }
 
-    public void addBarang(Barang b, int id2){
+    public void addBarang(Barang b, int id2) {
         b.setIDLama(b.getID());
         b.setID(id2);
         daftarBarang.add(b);
         jumBarang = daftarBarang.size();
     }
-        
+
     public void addBarangFromDatabase(Barang b, int baik) {
         b.setKondisiBaik(baik);
         b.setKondisiBuruk();
@@ -53,20 +51,20 @@ public class Gudang {
         jumBarang = daftarBarang.size();
     }
 
-    public ArrayList<Barang> getListBarang(){
+    public ArrayList<Barang> getListBarang() {
         return daftarBarang;
     }
-    
-    public String[] getDataDaftarBarang(){
+
+    public String[] getDataDaftarBarang() {
         String[] s = new String[daftarBarang.size()];
         int j = 0;
-        for (Barang i : daftarBarang){
-            s[j] = "ID."+String.valueOf(i.getID())+" "+i.getNama();
+        for (Barang i : daftarBarang) {
+            s[j] = "ID." + String.valueOf(i.getID()) + " " + i.getNama();
             j++;
         }
         return s;
     }
-    
+
     public int findBarang(int id) {
         for (Barang b : daftarBarang) {
             if (b.getID() == id) {
@@ -89,15 +87,17 @@ public class Gudang {
             return null;
         }
     }
-    
-    public ArrayList<Barang> cariNama(String nama){
+
+    public ArrayList<Barang> cariNama(String nama) {
         ArrayList<Barang> t = new ArrayList<>();
-        for (Barang b : daftarBarang){
-            if (b.getNama().equalsIgnoreCase(nama))
+        for (Barang b : daftarBarang) {
+            if (b.getNama().equalsIgnoreCase(nama)) {
                 t.add(b);
+            }
         }
         return t;
     }
+
     /*
     public ArrayList<Barang> cariKondisi(String kondisi){
         ArrayList<Barang> t = new ArrayList<>();
@@ -107,11 +107,11 @@ public class Gudang {
         }
         return t;
     }
-    */
-    public Barang loadBarang(int n){
+     */
+    public Barang loadBarang(int n) {
         return daftarBarang.get(n);
     }
-    
+
     public void deleteBarang(int id) {
         int idx = findBarang(id);
         if (idx != -1) {

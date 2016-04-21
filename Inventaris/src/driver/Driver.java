@@ -11,7 +11,7 @@ import viewConsole.Console;
 
 /**
  *
- * @author Emp. Elesar II
+ * @author Kelompok 8
  */
 public class Driver {
 
@@ -22,10 +22,10 @@ public class Driver {
         Aplikasi app = new Aplikasi();
         //GUI nya
         new Controller(app);
-        
+
         //Aplikasi Console
         Console view = new Console(app);
         //view.menuUtama();
     }
-    
+
 }
