@@ -89,11 +89,9 @@ public class Console {
                             System.out.print("ID barang diubah\t: ");
                             int id = inputInteger();
                             if (g.findBarang(id)!=-1){
-                                System.out.print("Jumlah\t\t: ");
-                                int jum = inputInteger();
-                                System.out.print("Kondisi\t\t: ");
-                                String k = sStr.nextLine();
-                                model.menuPtEditBrg(pt, g, id, jum, k);
+                                System.out.print("Barang Baik\t\t: ");
+                                int k = inputInteger();
+                                model.menuPtEditBrg(pt, g, id, k);
                             } else
                                 System.out.println("Barang tidak ada");
                         } else {

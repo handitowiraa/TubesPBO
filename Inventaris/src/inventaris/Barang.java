@@ -14,20 +14,19 @@ public class Barang {
     private int idBarang;
     private String namaBarang;
     private int jumlah;
-    private String kondisi;
+    private int kondisiBaik;
+    private int kondisiBuruk;
     private int idLama;
 
     public Barang(int id, String nama, int jumlah) {
         idBarang = id;
         namaBarang = nama;
         this.jumlah = jumlah;
+        kondisiBaik = jumlah;
+        kondisiBuruk = 0;
         this.idLama = id;
     }
 
-    public String outString(){
-        return "ID."+idBarang+" "+namaBarang;
-    }
-    
     public void setID(int id) {
         idBarang = id;
     }
@@ -40,8 +39,12 @@ public class Barang {
         return idLama;
     }
 
-    public void setKondisi(String k) {
-        kondisi = k;
+    public void setKondisiBaik(int baik) {
+        kondisiBaik = baik;
+    }
+    
+    public void setKondisiBuruk() {
+        kondisiBuruk = jumlah - kondisiBaik;
     }
 
     public int getID() {
@@ -56,8 +59,12 @@ public class Barang {
         return jumlah;
     }
 
-    public String getKondisi() {
-        return kondisi;
+    public int getKondisiBaik() {
+        return kondisiBaik;
+    }
+    
+    public int getKondisiBuruk() {
+        return kondisiBuruk;
     }
 
     public void view1() {
@@ -70,14 +77,21 @@ public class Barang {
         System.out.println("ID\t\t: " + idBarang);
         System.out.println("Nama\t\t: " + namaBarang);
         System.out.println("Jumlah\t\t: " + jumlah);
-        System.out.println("Kondisi\t\t: " + kondisi);
+        System.out.println("Jumlah Baik\t: " + kondisiBaik);
+        System.out.println("Jumlah Buruk\t: " + kondisiBuruk);
     }
 
     public void updateJumlah(int jumlah) {
         this.jumlah = jumlah;
     }
 
-    public void updateKondisi(String kondisi) {
-        this.kondisi = kondisi;
+    public void updateKondisi(int baik) {
+        this.kondisiBaik = baik;
+        kondisiBuruk = jumlah - kondisiBaik;
     }
+    
+    public String outString(){
+        return "ID."+idBarang+" "+namaBarang;
+    }
+    
 }

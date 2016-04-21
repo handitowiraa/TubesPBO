@@ -322,19 +322,17 @@ public class Aplikasi {
     }
 
     public void menuPtInputBrg(Gudang g, Barang b){
-        b.setKondisi("Baik");
-        g.addBarang(b,b.getKondisi(), b.getID());
+        g.addBarang(b, b.getID());
         db.saveBarang(g,b,b.getID());
     }
     
     public void menuPtTambahBrg(Petugas pt, Penyedia py, Gudang g, int id, int id2) {
         if (py.findBarang(id) != -1) {
             if (g.findBarang(id2) == -1){
-                String k = "Baik";
                 Barang b = py.getBarang(py.findBarang(id));
                 py.hapusBarang(id);
                 menuPyDeleteBrg(py,id);
-                pt.tambahBarang(g, b, k, id2);
+                pt.tambahBarang(g, b, id2);
                 db.saveBarang(g,py.getBarang(py.findBarang(id)),id2);
                 System.out.println("Barang berhasil ditambahkan");
             } else System.out.println("ID Baru sudah digunakan");
@@ -343,11 +341,11 @@ public class Aplikasi {
         }
     }
 
-    public void menuPtEditBrg(Petugas pt, Gudang g, int id, int jum, String kondisi) {
+    public void menuPtEditBrg(Petugas pt, Gudang g, int id, int baik) {
         int i = g.findBarang(id);
         if (i != -1) {
-            pt.ubahBarang(g, id, jum, kondisi);
-            db.updateBarang(g, id, jum, kondisi);
+            pt.ubahBarang(g, id, baik);
+            db.updateBarang(g, id, baik);
             System.out.println("Data sudah di-update");
         } else {
             System.out.println("Data barang tidak ada");

@@ -24,6 +24,7 @@ public class Petugas extends javax.swing.JPanel {
         initComponents();
         spinKelolaIdBarang.setEnabled(false);
         txtKelolaNamaBarang.setEnabled(false);
+        spinKelolaJumlah.setEnabled(false);
     }
 
     /**
@@ -51,6 +52,9 @@ public class Petugas extends javax.swing.JPanel {
         btnMasukSimpan = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         cbMasukIdGudang = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         labelPetugas2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -69,7 +73,8 @@ public class Petugas extends javax.swing.JPanel {
         txtKelolaNamaBarang = new javax.swing.JTextField();
         spinKelolaIdBarang = new javax.swing.JSpinner();
         btnKelolaSimpan = new javax.swing.JButton();
-        cbKondisi = new javax.swing.JComboBox<>();
+        spinKelolaBaik = new javax.swing.JSpinner();
+        jSeparator3 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         txtCari = new javax.swing.JTextField();
         btnCariCari = new javax.swing.JButton();
@@ -80,12 +85,17 @@ public class Petugas extends javax.swing.JPanel {
         cmbCari = new javax.swing.JComboBox<>();
         cbIdGudangCari = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbViewDataBarang = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         cbIdGudangView = new javax.swing.JComboBox<>();
         btnCariView = new javax.swing.JButton();
+        labelPetugas4 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
 
         btnMasukTambah.setText("TAMBAH");
 
@@ -108,6 +118,8 @@ public class Petugas extends javax.swing.JPanel {
 
         jLabel10.setText("Gudang");
 
+        jLabel12.setText("Barang Masuk Gudang");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,10 +127,32 @@ public class Petugas extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnMasukHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnMasukTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnMasukSimpan)
+                                .addGap(14, 14, 14))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel12))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(labelPetugas1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
                                 .addComponent(jLabel1)
                                 .addGap(80, 80, 80)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,25 +161,8 @@ public class Petugas extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnCariMasuk))
                                     .addComponent(cmbMasukPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(labelPetugas1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnMasukSimpan)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMasukHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMasukTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel10});
@@ -157,7 +174,9 @@ public class Petugas extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelPetugas1)
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cmbMasukPenyedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -166,21 +185,29 @@ public class Petugas extends javax.swing.JPanel {
                     .addComponent(jLabel10)
                     .addComponent(cbMasukIdGudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCariMasuk))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnMasukTambah)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMasukHapus))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMasukSimpan)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnMasukTambah)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnMasukHapus)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMasukSimpan)
+                        .addContainerGap())))
         );
 
         jTabbedPane1.addTab("Masukkan Barang", jPanel1);
@@ -215,11 +242,9 @@ public class Petugas extends javax.swing.JPanel {
 
         jLabel5.setText("Jumlah");
 
-        jLabel6.setText("Kondisi");
+        jLabel6.setText("Barang Baik");
 
         btnKelolaSimpan.setText("SIMPAN");
-
-        cbKondisi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baik", "Tidak Baik" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -236,11 +261,10 @@ public class Petugas extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbKondisi, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(spinKelolaJumlah)
-                                .addComponent(txtKelolaNamaBarang)
-                                .addComponent(spinKelolaIdBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(spinKelolaJumlah)
+                            .addComponent(txtKelolaNamaBarang)
+                            .addComponent(spinKelolaIdBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(spinKelolaBaik)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnKelolaSimpan)))
@@ -264,29 +288,29 @@ public class Petugas extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(spinKelolaJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cbKondisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(spinKelolaBaik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addComponent(btnKelolaSimpan)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnKelolaCari, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnKelolaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(btnKelolaHapus))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(labelPetugas2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -295,7 +319,8 @@ public class Petugas extends javax.swing.JPanel {
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(cbIdGudangKelola, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(163, 163, 163))))
+                            .addGap(163, 163, 163)))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -308,6 +333,8 @@ public class Petugas extends javax.swing.JPanel {
                         .addGap(49, 49, 49)
                         .addComponent(labelPetugas2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(cbIdGudangKelola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -317,7 +344,7 @@ public class Petugas extends javax.swing.JPanel {
                     .addComponent(btnKelolaHapus)
                     .addComponent(btnKelolaCari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -343,7 +370,7 @@ public class Petugas extends javax.swing.JPanel {
 
         jLabel7.setText("Cari Berdasarkan");
 
-        cmbCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id Barang", "Nama Barang", "Kondisi Barang" }));
+        cmbCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id Barang", "Nama Barang" }));
 
         jLabel8.setText("ID Gudang");
 
@@ -354,6 +381,7 @@ public class Petugas extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelPetugas3)
@@ -370,7 +398,8 @@ public class Petugas extends javax.swing.JPanel {
                                     .addComponent(cbIdGudangCari, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbCari, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 134, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jSeparator5))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -378,7 +407,9 @@ public class Petugas extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelPetugas3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -392,7 +423,9 @@ public class Petugas extends javax.swing.JPanel {
                     .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCariCari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
@@ -415,18 +448,32 @@ public class Petugas extends javax.swing.JPanel {
 
         btnCariView.setText("CARI");
 
+        labelPetugas4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        labelPetugas4.setText("Petugas");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(cbIdGudangView, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCariView)
-                .addGap(77, 77, 77))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(cbIdGudangView, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCariView)
+                        .addGap(77, 77, 77))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(labelPetugas4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jSeparator6)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jSeparator7)
+                        .addContainerGap())))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addContainerGap()
@@ -436,16 +483,22 @@ public class Petugas extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
+                .addComponent(labelPetugas4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbIdGudangView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(btnCariView))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(356, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(72, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(97, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
 
@@ -484,13 +537,13 @@ public class Petugas extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbIdGudangCari;
     private javax.swing.JComboBox<String> cbIdGudangKelola;
     private javax.swing.JComboBox<String> cbIdGudangView;
-    private javax.swing.JComboBox<String> cbKondisi;
     private javax.swing.JComboBox<String> cbMasukIdGudang;
     private javax.swing.JComboBox<String> cmbCari;
     private javax.swing.JComboBox<String> cmbMasukPenyedia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -509,12 +562,21 @@ public class Petugas extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelPetugas1;
     private javax.swing.JLabel labelPetugas2;
     private javax.swing.JLabel labelPetugas3;
+    private javax.swing.JLabel labelPetugas4;
     private javax.swing.JList<String> listMasukBarangPenyedia;
     private javax.swing.JList<String> listMasukBarangTambah;
+    private javax.swing.JSpinner spinKelolaBaik;
     private javax.swing.JSpinner spinKelolaIdBarang;
     private javax.swing.JSpinner spinKelolaJumlah;
     private javax.swing.JTable tbCariHasil;
@@ -657,33 +719,33 @@ public class Petugas extends javax.swing.JPanel {
         return txtKelolaNamaBarang.getText();
     }
     
-    public String getKondisiBarangEdit(){
-        return (String) cbKondisi.getSelectedItem();
+    public int getBarangBaikEdit(){
+        return (Integer) spinKelolaBaik.getValue();
     }
     
     public void refreshKelola(){
         txtKelolaNamaBarang.setText("");
-        cbKondisi.setSelectedIndex(0);
+        spinKelolaBaik.setValue(0);
         spinKelolaIdBarang.setValue(0);
         spinKelolaJumlah.setValue(0);
     }
     
     public void refreshEditKelola(Barang b){
         txtKelolaNamaBarang.setText(b.getNama());
-        if(b.getKondisi().equals("Tidak Baik")) cbKondisi.setSelectedIndex(1);
-        else cbKondisi.setSelectedIndex(0);
+        spinKelolaBaik.setValue(b.getKondisiBaik());
         spinKelolaIdBarang.setValue(b.getID());
         spinKelolaJumlah.setValue(b.getJumlah());
     }
     
     public void setListKelolaBarang(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Kondisi"};
-        String[][] isi = new String[list.size()][4];
+        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+        String[][] isi = new String[list.size()][5];
         for (int i = 0; i < list.size(); i++){
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
-            isi[i][3] = list.get(i).getKondisi();
+            isi[i][3] = String.valueOf(list.get(i).getKondisiBaik());
+            isi[i][4] = String.valueOf(list.get(i).getKondisiBuruk());
         }
         DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
         tbKelolaPenyedia.setModel(tableModel);
@@ -691,12 +753,13 @@ public class Petugas extends javax.swing.JPanel {
     }
     
     public void setListKelolaBarangNull(){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Kondisi"};
-        String[][] isi = new String[1][4];
+        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+        String[][] isi = new String[1][5];
         isi[0][0] = "";
         isi[0][1] = "";
         isi[0][2] = "";
         isi[0][3] = "";
+        isi[0][4] = "";
         DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
         tbKelolaPenyedia.setModel(tableModel);
         tbKelolaPenyedia.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -743,13 +806,14 @@ public class Petugas extends javax.swing.JPanel {
     }
     
     public void setListCariHasil(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Kondisi"};
-        String[][] isi = new String[list.size()][4];
+        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+        String[][] isi = new String[list.size()][5];
         for (int i = 0; i < list.size(); i++){
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
-            isi[i][3] = list.get(i).getKondisi();
+            isi[i][3] = String.valueOf(list.get(i).getKondisiBaik());
+            isi[i][4] = String.valueOf(list.get(i).getKondisiBuruk());
         }
         DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
         tbCariHasil.setModel(tableModel);
@@ -757,12 +821,13 @@ public class Petugas extends javax.swing.JPanel {
     }
     
     public void setListCariHasilNull(){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Kondisi"};
-        String[][] isi = new String[1][4];
+        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+        String[][] isi = new String[1][5];
         isi[0][0] = "";
         isi[0][1] = "";
         isi[0][2] = "";
         isi[0][3] = "";
+        isi[0][4] = "";
         DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
         tbCariHasil.setModel(tableModel);
         tbCariHasil.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -793,13 +858,14 @@ public class Petugas extends javax.swing.JPanel {
     }
     
     public void setListView(ArrayList<Barang> list){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Kondisi"};
-        String[][] isi = new String[list.size()][4];
+        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+        String[][] isi = new String[list.size()][5];
         for (int i = 0; i < list.size(); i++){
             isi[i][0] = String.valueOf(list.get(i).getID());
             isi[i][1] = list.get(i).getNama();
             isi[i][2] = String.valueOf(list.get(i).getJumlah());
-            isi[i][3] = list.get(i).getKondisi();
+            isi[i][3] = String.valueOf(list.get(i).getKondisiBaik());
+            isi[i][4] = String.valueOf(list.get(i).getKondisiBuruk());
         }
         DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
         tbViewDataBarang.setModel(tableModel);
@@ -807,12 +873,13 @@ public class Petugas extends javax.swing.JPanel {
     }
     
     public void setListViewNull(){
-        String[] judul = {"ID Barang","Nama Barang","Jumlah","Kondisi"};
-        String[][] isi = new String[1][4];
+        String[] judul = {"ID Barang","Nama Barang","Jumlah","Barang Baik","Barang Tidak Baik"};
+        String[][] isi = new String[1][5];
         isi[0][0] = "";
         isi[0][1] = "";
         isi[0][2] = "";
         isi[0][3] = "";
+        isi[0][4] = "";
         DefaultTableModel tableModel = new DefaultTableModel(isi,judul);
         tbViewDataBarang.setModel(tableModel);
         tbViewDataBarang.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -826,6 +893,7 @@ public class Petugas extends javax.swing.JPanel {
         labelPetugas1.setText(s);
         labelPetugas2.setText(s);
         labelPetugas3.setText(s);
+        labelPetugas4.setText(s);
     }
     
     public void addListener(ActionListener e){

@@ -39,16 +39,16 @@ public class Gudang {
         return id_gudang;
     }
 
-    public void addBarang(Barang b, String kondisi,int id2){
-        b.setKondisi(kondisi);
+    public void addBarang(Barang b, int id2){
         b.setIDLama(b.getID());
         b.setID(id2);
         daftarBarang.add(b);
         jumBarang = daftarBarang.size();
     }
         
-    public void addBarangFromDatabase(Barang b, String kondisi) {
-        b.setKondisi(kondisi);
+    public void addBarangFromDatabase(Barang b, int baik) {
+        b.setKondisiBaik(baik);
+        b.setKondisiBuruk();
         daftarBarang.add(b);
         jumBarang = daftarBarang.size();
     }
@@ -98,7 +98,7 @@ public class Gudang {
         }
         return t;
     }
-    
+    /*
     public ArrayList<Barang> cariKondisi(String kondisi){
         ArrayList<Barang> t = new ArrayList<>();
         for (Barang b : daftarBarang){
@@ -107,7 +107,7 @@ public class Gudang {
         }
         return t;
     }
-
+    */
     public Barang loadBarang(int n){
         return daftarBarang.get(n);
     }

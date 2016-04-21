@@ -34,7 +34,7 @@ public class Database {
             System.out.println(e);
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/dbTubesPBO", dbUser, dbPass);
+            con = DriverManager.getConnection("jdbc:mysql://localhost/dbTubes2", dbUser, dbPass);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -66,11 +66,11 @@ public class Database {
         try {
             while(rs.next()){
                 Gudang g = new Gudang(rs.getInt("id_gudang"),rs.getString("nama_gudang"));
-                s = "Select id_barang, nama_barang, jumlah, kondisi from barang_gudang where id_gudang = "+rs.getInt("id_gudang");
+                s = "Select id_barang, nama_barang, jumlah, kondisi_baik from barang_gudang where id_gudang = "+rs.getInt("id_gudang");
                 ResultSet rs2 = getData(s);
                 while(rs2.next()){
                     Barang b = new Barang(rs2.getInt("id_barang"),rs2.getString("nama_barang"),rs2.getInt("jumlah"));
-                    g.addBarangFromDatabase(b,rs2.getString("kondisi"));
+                    g.addBarangFromDatabase(b,rs2.getInt("kondisi_baik"));
                 }
                 daftarGudang.add(g);
             }
@@ -97,7 +97,7 @@ public class Database {
         try {
             while(rs.next()){
                 Penyedia py = new Penyedia(rs.getInt("id_penyedia"),rs.getString("nama"),rs.getString("username"),rs.getString("password"));
-                s = "Select id_barang, nama_barang, jumlah, kondisi from barang_penyedia where id_penyedia = "+rs.getInt("id_penyedia");
+                s = "Select id_barang, nama_barang, jumlah from barang_penyedia where id_penyedia = "+rs.getInt("id_penyedia");
                 ResultSet rs2 = getData(s);
                 while(rs2.next()){
                     py.createBarang(rs2.getInt("id_barang"),rs2.getString("nama_barang"),rs2.getInt("jumlah"));
@@ -206,7 +206,7 @@ public class Database {
     
     public void saveBarang(Penyedia py, int id, String nama, int jumlah){
         String s = "insert into barang_penyedia values("+py.getID()+","+id
-                +",'"+nama+"',"+jumlah+",null)";
+                +",'"+nama+"',"+jumlah+")";
         try {
             query(s);
         } catch (SQLException ex) {
@@ -234,7 +234,7 @@ public class Database {
     
     public void saveBarang(Gudang g, Barang b, int id2){
         String s = "insert into barang_gudang values("+g.getID()+","+id2
-                +",'"+b.getNama()+"',"+b.getJumlah()+",'"+b.getKondisi()+"')";
+                +",'"+b.getNama()+"',"+b.getJumlah()+","+b.getJumlah()+",0)";
         try {
             query(s);
         } catch (SQLException ex) {
@@ -242,8 +242,8 @@ public class Database {
         }
     }
     
-    public void updateBarang(Gudang g, int id, int jumlah,String kondisi){
-        String s = "update barang_gudang set jumlah = "+jumlah+", kondisi = '"+kondisi
+    public void updateBarang(Gudang g, int id,int baik){
+        String s = "update barang_gudang set kondisi_baik = '"+baik
                 +"' where id_barang = "+id+" and id_gudang = "+g.getID();
         try {
             query(s);

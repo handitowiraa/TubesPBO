@@ -32,13 +32,12 @@ public class Petugas extends Orang {
         this.idPetugas = idPetugas;
     }
 
-    public void tambahBarang(Gudang g, Barang b, String kondisi,int id2) {
-        g.addBarang(b, kondisi,id2);
+    public void tambahBarang(Gudang g, Barang b,int id2) {
+        g.addBarang(b,id2);
     }
 
-    public void ubahBarang(Gudang g, int n, int jum, String kondisi) {
-        g.getBarang(n).updateJumlah(jum);
-        g.getBarang(n).updateKondisi(kondisi);
+    public void ubahBarang(Gudang g, int n, int baik) {
+        g.getBarang(n).updateKondisi(baik);
     }
 
     public void hapusBarang(Gudang g, int id) {

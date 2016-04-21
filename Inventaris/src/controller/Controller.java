@@ -248,7 +248,6 @@ public class Controller extends MouseAdapter implements ActionListener {
             } else if (source.equals(pt.getBtnMasukSimpan())) {
                 if (temp.size() >= 0){
                     for (Barang b:temp){
-                        model.menuPyDeleteBrg(p1,b.getIDLama());
                         model.menuPtInputBrg(g,b);
                     }
                     temp = new ArrayList<Barang>();
@@ -257,7 +256,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                     JOptionPane.showMessageDialog(view, "Data Berhasil Disimpan", "Simpan Berhasil", JOptionPane.INFORMATION_MESSAGE);
                 } else 
                 JOptionPane.showMessageDialog(view, "Tidak ada perubahan", "Simpan Data", JOptionPane.INFORMATION_MESSAGE);
-            } 
+            }
             //==========================================KELOLA GUDANG================================================//
             else if (source.equals(pt.getBtnKelolaCari())){
                 g = model.getGudang(pt.getKelolaIDGudang());
@@ -271,12 +270,13 @@ public class Controller extends MouseAdapter implements ActionListener {
                     JOptionPane.showMessageDialog(view, "Anda belum memilih data", "Peringatan", JOptionPane.ERROR_MESSAGE);
             } else if (source.equals(pt.getBtnKelolaSimpan())){
                 if (id_br_seleksi != -1){
-                    if (pt.getJumlahBarangEdit() < 0)
+                    Barang b = g.loadBarang(id_br_seleksi);
+                    if (pt.getBarangBaikEdit() < 0)
                         JOptionPane.showMessageDialog(view, "Jumlah tidak boleh negatif", "Peringatan", JOptionPane.ERROR_MESSAGE);
-                    else if(pt.getJumlahBarangEdit() > b.getJumlah()){
+                    else if(pt.getBarangBaikEdit() > b.getJumlah()){
                         JOptionPane.showMessageDialog(view, "Jumlah tidak valid", "Peringatan", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        model.menuPtEditBrg(p2,g,pt.getIdBarangEdit(),pt.getJumlahBarangEdit(),pt.getKondisiBarangEdit());
+                        model.menuPtEditBrg(p2,g,pt.getIdBarangEdit(),pt.getBarangBaikEdit());
                         pt.setListKelolaBarang(g.getListBarang());
                         JOptionPane.showMessageDialog(view, "Data berhasil di-update", "Ubah Data", JOptionPane.INFORMATION_MESSAGE);
                     } 
@@ -320,13 +320,6 @@ public class Controller extends MouseAdapter implements ActionListener {
                     } else if (pt.getCariKategori().equals("Nama Barang")){
                         String nama = pt.getTxtCari();
                         ArrayList<Barang> t = g.cariNama(nama);
-                        if (t.size() > 0) 
-                            pt.setListCariHasil(t);
-                        else 
-                            JOptionPane.showMessageDialog(view, "Data Tidak Ada", "Pencarian", JOptionPane.INFORMATION_MESSAGE);
-                    } else if (pt.getCariKategori().equals("Kondisi Barang")){
-                        String kondisi = pt.getTxtCari();
-                        ArrayList<Barang> t = g.cariKondisi(kondisi);
                         if (t.size() > 0) 
                             pt.setListCariHasil(t);
                         else 
