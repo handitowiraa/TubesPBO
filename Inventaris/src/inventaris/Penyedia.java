@@ -5,8 +5,6 @@
  */
 package inventaris;
 
-import database.Database;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
