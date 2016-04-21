@@ -413,20 +413,24 @@ public class Controller extends MouseAdapter implements ActionListener {
                 ad.deactivateJenis();
                 ad.deactivateID();
             } else if (source.equals(ad.deleteButtonPressed())) {
-                Orang o = model.getOrang(id_or_seleksi);
-                if (o == null) {
+                if (id_or_seleksi == -1) {
                     JOptionPane.showMessageDialog(view, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    int confirm = JOptionPane.showConfirmDialog(view, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (confirm == JOptionPane.YES_OPTION) {
-                        if (o instanceof inventaris.Penyedia) {
-                            model.deletePenyedia((int) ((inventaris.Penyedia) o).getID());
-                        } else if (o instanceof inventaris.Petugas) {
-                            model.deletePetugas((int) ((inventaris.Petugas) o).getIdPetugas());
+                    Orang o = model.getOrang(id_or_seleksi);
+                    if (o == null) {
+                        JOptionPane.showMessageDialog(view, "Pilih Barang terlebih dahulu", "Peringatan", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        int confirm = JOptionPane.showConfirmDialog(view, "Anda yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION) {
+                            if (o instanceof inventaris.Penyedia) {
+                                model.deletePenyedia((int) ((inventaris.Penyedia) o).getID());
+                            } else if (o instanceof inventaris.Petugas) {
+                                model.deletePetugas((int) ((inventaris.Petugas) o).getIdPetugas());
+                            }
+                            ad.setListOrang(model.getListOrang());
+                            JOptionPane.showMessageDialog(view, "Data Berhasil Dihapus", "Hapus Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                            id_or_seleksi = -1;
                         }
-                        ad.setListOrang(model.getListOrang());
-                        JOptionPane.showMessageDialog(view, "Data Berhasil Dihapus", "Hapus Berhasil", JOptionPane.INFORMATION_MESSAGE);
-                        id_or_seleksi = -1;
                     }
                 }
             } //==========================================KELOLA GUDANG 2==============================================//
