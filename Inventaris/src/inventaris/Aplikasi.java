@@ -24,11 +24,17 @@ public class Aplikasi {
     private ArrayList<Gudang> daftarGudang;
     int jumOrang = 0;
     int jumGudang = 0;
+    private Database db;
     private String[] angka = {"1","2","3","4","5","6","7","8","9","0"};
 
     public Aplikasi() {
-        daftarOrang = new ArrayList<>();
-        daftarGudang = new ArrayList<>();
+        db = new Database();
+        //daftarOrang = new ArrayList();
+        daftarOrang = db.readAllOrang();
+        //daftarGudang = new ArrayList();
+        daftarGudang = db.readAllGudang();
+        jumOrang = daftarOrang.size();
+        jumGudang = daftarGudang.size();
     }
     
     public boolean cekNama(String name){
@@ -40,147 +46,13 @@ public class Aplikasi {
         return benar;
     }
     
-    
-    /*public void updatePenyedia(int id, String nama, String user, String pass){
-        Database db = new Database();
-        String s = "update penyedia set nama = '"+nama+"', username = '"+user
-                +"', password = '"+pass+"' where id_penyedia = "+id;
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void readAllGudang(){
-        Database db = new Database();
-        String s = "Select id_gudang, nama_gudang from gudang";
-        ResultSet rs = db.getData(s);
-        try {
-            while(rs.next()){
-                Gudang g = new Gudang(rs.getInt("id_gudang"),rs.getString("nama_gudang"));
-                s = "Select id_barang, nama_barang, jumlah, kondisi from barang_gudang where id_gudang = "+rs.getInt("id_gudang");
-                ResultSet rs2 = db.getData(s);
-                while(rs2.next()){
-                    Barang b = new Barang(rs2.getInt("id_barang"),rs2.getString("nama_barang"),rs2.getInt("jumlah"));
-                    g.addBarangFromDatabase(b,rs2.getString("kondisi"));
-                }
-                daftarGudang.add(g);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        jumGudang = daftarGudang.size();
-    }
-    
-    public void readAllOrang(){
-        Database db = new Database();
-        String s = "Select id_petugas, nama, username, password from petugas";
-        ResultSet rs = db.getData(s);
-        try {
-            while(rs.next()){
-                Petugas pt = new Petugas(rs.getInt("id_petugas"),rs.getString("nama"),rs.getString("username"),rs.getString("password"));
-                daftarOrang.add(pt);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        s = "Select id_penyedia, nama, username, password from penyedia";
-        rs = db.getData(s);
-        try {
-            while(rs.next()){
-                Penyedia py = new Penyedia(rs.getInt("id_penyedia"),rs.getString("nama"),rs.getString("username"),rs.getString("password"));
-                s = "Select id_barang, nama_barang, jumlah, kondisi from barang_penyedia where id_penyedia = "+rs.getInt("id_penyedia");
-                ResultSet rs2 = db.getData(s);
-                while(rs2.next()){
-                    py.createBarang(rs2.getInt("id_barang"),rs2.getString("nama_barang"),rs2.getInt("jumlah"));
-                }
-                daftarOrang.add(py);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        jumOrang = daftarOrang.size();
-    }
-    
-    public void savePetugas(int id, String nama, String user, String pass){
-        Database db = new Database();
-        String s = "insert into petugas values("+id+",'"+nama
-                +"','"+user+"','"+pass+"')";
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void savePenyedia(int id, String nama, String user, String pass){
-        Database db = new Database();
-        String s = "insert into penyedia values("+id+",'"+nama
-                +"','"+user+"','"+pass+"')";
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void saveGudang(int id){
-        Database db = new Database();
-        String s = "insert into gudang values("+id+",null)";
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void saveGudang(int id, String nama){
-        Database db = new Database();
-        String s = "insert into gudang values("+id+",'"+nama+"')";
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void delete2Petugas(int id){
-        Database db = new Database();
-        String s = "delete from petugas where id_petugas = "+id;
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void delete2Penyedia(int id){
-        Database db = new Database();
-        String s = "delete from penyedia where id_penyedia= "+id;
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void delete2Gudang(int id){
-        Database db = new Database();
-        String s = "delete from gudang where id_gudang = "+id;
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    */
     public void addPenyedia(int id, String nama, String username, String password) {
         if (jumOrang < 100) {
             if (getPenyedia(id) == null) {
                 if (!(cariUsername(username))) {
                     if (cekNama(nama)){
                         daftarOrang.add(new Penyedia(id, nama, username, password));
+                        db.savePenyedia(id, nama, username, password);
                         jumOrang=daftarOrang.size();
                         System.out.println("Data berhasil disimpan");
                     } else {
@@ -201,6 +73,7 @@ public class Aplikasi {
                 if (!(cariUsername(username))) {
                     if (cekNama(nama)){
                         daftarOrang.add(new Petugas(id, nama, username, password));
+                        db.savePetugas(id, nama, username, password);
                         jumOrang = daftarOrang.size();
                         System.out.println("Data berhasil disimpan");
                     } else {
@@ -214,33 +87,21 @@ public class Aplikasi {
             }
         }
     }
-
-    public void updatePetugas(int id, String nama, String user, String pass){
-        Database db = new Database();
-        String s = "update Petugas set nama = '"+nama+"', username = '"+user
-                +"', password = '"+pass+"' where id_Petugas = "+id;
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void updateGudang(int id, String nama){
-        Database db = new Database();
-        String s = "update gudang set nama_gudang = '"+nama+"' where id_Gudang = "+id;
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
     
     public void ubahPenyedia(int id, String nama, String username, String password) {
         Penyedia p = getPenyedia(id);
         p.setNama(nama);
         p.setUsername(username);
         p.setPassword(password);
+        db.updatePenyedia(id, nama, username, password);
+    }
+    
+    public void ubahPetugas(int id, String nama, String username, String password) {
+        Petugas p = getPetugas(id);
+        p.setNama(nama);
+        p.setUsername(username);
+        p.setPassword(password);
+        db.updatePetugas(id, nama, username, password);
     }
     
     public Gudang ambilGudang(int n){
@@ -257,13 +118,6 @@ public class Aplikasi {
     
     public ArrayList<Orang> getListOrang(){
         return daftarOrang;
-    }
-    
-    public void ubahPetugas(int id, String nama, String username, String password) {
-        Petugas p = getPetugas(id);
-        p.setNama(nama);
-        p.setUsername(username);
-        p.setPassword(password);
     }
     
     public Petugas getPetugas(int id) {
@@ -353,6 +207,7 @@ public class Aplikasi {
                 Penyedia py = (Penyedia) daftarOrang.get(i);
                 if (py.getID() == id) {
                     daftarOrang.remove(i);
+                    db.deletePenyedia(id);
                     jumOrang = daftarOrang.size();
                     break;
                 }
@@ -367,14 +222,13 @@ public class Aplikasi {
                 Petugas pt = (Petugas) daftarOrang.get(i);
                 if (pt.getIdPetugas() == id) {
                     daftarOrang.remove(i);
+                    db.deletePetugas(id);
                     jumOrang = daftarOrang.size();
                     break;
                 }
             }
         }
     }
-    
-    
     
     public int findUsername(String user){
         for (Orang p : daftarOrang){
@@ -391,6 +245,7 @@ public class Aplikasi {
     
     public void tambahGudang(int id, String nama) {
         daftarGudang.add(new Gudang(id,nama));
+        db.saveGudang(id, nama);
         jumGudang = daftarGudang.size();
     }
 
@@ -404,6 +259,7 @@ public class Aplikasi {
     }
     
     public void ubahGudang(int id, String nama){
+        db.updateGudang(id, nama);
         Gudang g = getGudang(id);
         g.setNama_gudang(nama);
     }
@@ -413,6 +269,7 @@ public class Aplikasi {
         for (int i = 0; i < jumGudang; i++) {
             if (daftarGudang.get(i).getID() == id) {
                 daftarGudang.remove(i);
+                db.deleteGudang(id);
                 jumGudang = daftarGudang.size();
                 break;
             }
@@ -431,7 +288,7 @@ public class Aplikasi {
     public void menuPyTambahBrg(Penyedia py, int id, String nama, int jumlah) {
         if (py.findBarang(id)==-1){
             py.createBarang(id, nama, jumlah);
-            //py.saveBarang(id, nama, jumlah);
+            db.saveBarang(py, id, nama, jumlah);
             System.out.println("Barang berhasil ditambahkan");
         } else {
             System.out.println("Maaf, kode barang sudah ada");
@@ -442,7 +299,7 @@ public class Aplikasi {
         int j = py.findBarang(id);
         if (j != -1) {
             py.ubahBarang(id, jumlah);
-            //py.updateBarang(id, jumlah);
+            db.updateBarang(py, id, jumlah);
             System.out.println("Data barang telah diubah");
         } else {
             System.out.println("Data barang tidak ada");
@@ -453,7 +310,7 @@ public class Aplikasi {
         int j = py.findBarang(id);
         if (j != -1) {
             py.hapusBarang(id);
-            //py.deleteBarang(id);
+            db.deleteBarang(py, id);
             System.out.println("Data barang telah dihapus");
         } else {
             System.out.println("Data barang tidak ada");
@@ -467,7 +324,7 @@ public class Aplikasi {
     public void menuPtInputBrg(Gudang g, Barang b){
         b.setKondisi("Baik");
         g.addBarang(b,b.getKondisi(), b.getID());
-        //g.saveBarang(b,b.getID());
+        db.saveBarang(g,b,b.getID());
     }
     
     public void menuPtTambahBrg(Petugas pt, Penyedia py, Gudang g, int id, int id2) {
@@ -476,9 +333,9 @@ public class Aplikasi {
                 String k = "Baik";
                 Barang b = py.getBarang(py.findBarang(id));
                 py.hapusBarang(id);
-                //py.deleteBarang(id);
+                menuPyDeleteBrg(py,id);
                 pt.tambahBarang(g, b, k, id2);
-                //g.saveBarang(py.getBarang(py.findBarang(id)),id2);
+                db.saveBarang(g,py.getBarang(py.findBarang(id)),id2);
                 System.out.println("Barang berhasil ditambahkan");
             } else System.out.println("ID Baru sudah digunakan");
         } else {
@@ -490,7 +347,7 @@ public class Aplikasi {
         int i = g.findBarang(id);
         if (i != -1) {
             pt.ubahBarang(g, id, jum, kondisi);
-            //g.updateBarang(id, jum, kondisi);
+            db.updateBarang(g, id, jum, kondisi);
             System.out.println("Data sudah di-update");
         } else {
             System.out.println("Data barang tidak ada");
@@ -499,7 +356,7 @@ public class Aplikasi {
 
     public void menuPtDeleteBrg(Petugas pt, Gudang g, int id) {
         pt.hapusBarang(g,id);
-        //g.deleteDBBarang(id);
+        db.deleteDBBarang(g,id);
     }
    
     public void menuPtViewGudang(int id) {

@@ -63,38 +63,7 @@ public class Penyedia extends Orang {
         }
         return -1;
     }
-    /*
-    public void saveBarang(int id, String nama, int jumlah){
-        Database db = new Database();
-        String s = "insert into barang_penyedia values("+getID()+","+id
-                +",'"+nama+"',"+jumlah+",null)";
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
     
-    public void updateBarang(int id, int jumlah){
-        Database db = new Database();
-        String s = "update barang_penyedia set jumlah = "+jumlah+" where id_barang = "+id+" and id_penyedia = "+getID();
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void deleteBarang(int id){
-        Database db = new Database();
-        String s = "delete from barang_penyedia where id_barang = "+id+" and id_penyedia = "+getID();
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    */
     public void view() {
         for (int i = 0; i < getJumBarang(); i++) {
             daftarBarang.get(i).view1();

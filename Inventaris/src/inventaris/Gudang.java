@@ -66,39 +66,7 @@ public class Gudang {
         }
         return s;
     }
-    /*
-    public void saveBarang(Barang b, int id2){
-        Database db = new Database();
-        String s = "insert into barang_gudang values("+getID()+","+id2
-                +",'"+b.getNama()+"',"+b.getJumlah()+",'"+b.getKondisi()+"')";
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
     
-    public void updateBarang(int id, int jumlah,String kondisi){
-        Database db = new Database();
-        String s = "update barang_gudang set jumlah = "+jumlah+", kondisi = '"+kondisi
-                +"' where id_barang = "+id+" and id_gudang = "+getID();
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    public void deleteDBBarang(int id){
-        Database db = new Database();
-        String s = "delete from barang_gudang where id_barang = "+id+" and id_gudang = "+getID();
-        try {
-            db.query(s);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    */ 
     public int findBarang(int id) {
         for (Barang b : daftarBarang) {
             if (b.getID() == id) {

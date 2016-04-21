@@ -401,7 +401,7 @@ public class Admin extends javax.swing.JPanel {
         return btnHapusPengguna;
     }
 
-    public void setListBarang(ArrayList<Orang> list){
+    public void setListOrang(ArrayList<Orang> list){
         String[] judul = {"ID","Nama","Username","Password","Jenis User"};
         String[][] isi = new String[list.size()][5];
         for (int i = 0; i < list.size(); i++){
